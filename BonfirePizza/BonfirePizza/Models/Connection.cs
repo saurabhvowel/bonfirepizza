@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace PoolSideMenu.Models
+namespace BonfirePizza.Models
 {
     public class Connection
     {
@@ -16,7 +16,7 @@ namespace PoolSideMenu.Models
         {
             try
             {
-                connectionString = "Data Source=103.20.215.199,1232;Initial Catalog=neerajorder;User Id=neerajorder;Password=Neeraj@1234;Integrated Security=false;";
+                connectionString = "Data Source=103.20.215.199,1232;Initial Catalog=bonfirepizza;User Id=bonfirepizza;Password=Bonfirepizza@123;Integrated Security=false;";
             }
             catch (Exception)
             {

@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
-namespace PoolSideMenu.Filter
+namespace BonfirePizza.Filter
 {
     public class SimpleAttribute
     {

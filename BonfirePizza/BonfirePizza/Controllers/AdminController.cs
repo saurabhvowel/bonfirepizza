@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PoolSideMenu.Filter;
+using BonfirePizza.Filter;
 using System.Data;
 using System.Data.SqlClient;
-using PoolSideMenu.Models;
+using BonfirePizza.Models;
 
-namespace PoolSideMenu.Controllers
+namespace BonfirePizza.Controllers
 {
     public class AdminController : Controller
     {
@@ -61,6 +61,31 @@ namespace PoolSideMenu.Controllers
             #endregion
 
             return View(model);
+        }
+
+
+
+        public ActionResult GetMainCategoryOnload(string PK_MenuID)
+        {
+            List<Admin> list = new List<Admin>();
+            Admin model = new Admin();
+            model.PK_MenuID = PK_MenuID;
+            #region Get
+            List<SelectListItem> ddlMainCategory = new List<SelectListItem>();
+            DataSet ds = model.MainCategoryOnload();
+
+            if (ds != null && ds.Tables.Count > 0)
+            {
+                foreach (DataRow r in ds.Tables[0].Rows)
+                {
+                    ddlMainCategory.Add(new SelectListItem { Text = r["MainCategoryName"].ToString(), Value = r["PK_MainCategoryID"].ToString() });
+
+                }
+            }
+
+            model.ddlMainCategory = ddlMainCategory;
+            #endregion
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetMainCategory(string PK_MenuID)

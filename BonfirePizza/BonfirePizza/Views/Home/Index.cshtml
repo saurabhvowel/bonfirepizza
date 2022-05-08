@@ -1,4 +1,4 @@
-﻿@model PoolSideMenu.Models.Home
+﻿@model BonfirePizza.Models.Home
 @{
 
     Layout = null;
@@ -169,6 +169,36 @@
         if ($('#Null').val() != "") {
             alert('Your Orders are Placed.');
         }
+        var value = "";
+
+
+        $.ajax({
+            url: "/Admin/GetMainCategoryOnload",
+            Type: "Get",
+            DataType: "JSON",
+            data: { PK_MenuID: value },
+            success: function (data) {
+
+                // alert(data.Result);
+
+                $("#PK_MainCategoryID").html(""); // clear before appending new list
+                $("#PK_MainCategoryID").empty();
+
+                $("#PK_MainCategoryID").append(
+                    $('<option></option>').val(0).html('Select Main Category'));
+                $.each(data.ddlMainCategory, function (index, count) {
+                    $("#PK_MainCategoryID").append(
+                        $('<option></option>').val(count.Value).html(count.Text));
+
+                });
+
+
+            }
+
+        });
+
+
+
     });
 
 
@@ -244,6 +274,7 @@
             }
 
         });
+        $('#search').hide();
 
     }
 
@@ -278,6 +309,7 @@
 
             }
         });
+        $('#search').show();
     }
 
     function addOnclick(id, name, price) {

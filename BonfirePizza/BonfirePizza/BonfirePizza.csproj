@@ -8,17 +8,17 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B384B6AC-A2FC-495E-BFF4-01482488B203}</ProjectGuid>
+    <ProjectGuid>{DC61E6F2-6649-4ECF-ACED-D568A5128C1D}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PoolSideMenu</RootNamespace>
-    <AssemblyName>PoolSideMenu</AssemblyName>
+    <RootNamespace>BonfirePizza</RootNamespace>
+    <AssemblyName>BonfirePizza</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44384</IISExpressSSLPort>
+    <IISExpressSSLPort>44355</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -227,14 +227,8 @@
     <Content Include="assets\images\roomdinning.jpg" />
     <Content Include="assets\images\roomdinning_logo.png" />
     <Content Include="assets\js\bootstrap.min.js" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -245,21 +239,11 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="AdminCSS\fonts\feathericon.eot" />
     <Content Include="AdminCSS\fonts\feathericon.ttf" />
     <Content Include="AdminCSS\fonts\feathericon.woff" />
@@ -280,17 +264,19 @@
     <Content Include="AdminCSS\plugins\summernote\dist\font\summernotec360.woff" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\AdminLayout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_MenuHotel.cshtml" />
-    <Content Include="Views\Home\AdminLogin.cshtml" />
-    <Content Include="Views\Admin\Dashboard.cshtml" />
-    <Content Include="Views\Admin\MainCategory.cshtml" />
     <Content Include="Views\Admin\CategoryItems.cshtml" />
     <Content Include="Views\Admin\CategoryItemsList.cshtml" />
-    <Content Include="Views\Admin\RoomDinningMainCategory.cshtml" />
+    <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\Admin\MainCategory.cshtml" />
+    <Content Include="Views\Admin\Menu.cshtml" />
     <Content Include="Views\Admin\RoomDinningCategoryItems.cshtml" />
     <Content Include="Views\Admin\RoomDinningCategoryItemsList.cshtml" />
+    <Content Include="Views\Admin\RoomDinningMainCategory.cshtml" />
+    <Content Include="Views\Home\AdminLogin.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Index2.cshtml" />
-    <Content Include="Views\Admin\Menu.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -308,9 +294,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1111</DevelopmentServerPort>
+          <DevelopmentServerPort>33473</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44384/</IISUrl>
+          <IISUrl>https://localhost:44355/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

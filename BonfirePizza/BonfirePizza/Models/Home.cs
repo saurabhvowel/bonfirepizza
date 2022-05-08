@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace PoolSideMenu.Models
+namespace BonfirePizza.Models
 {
     public class Home
     {

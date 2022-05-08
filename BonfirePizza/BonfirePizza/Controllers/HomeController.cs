@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PoolSideMenu.Models;
-using PoolSideMenu.Filter;
+using BonfirePizza.Models;
+using BonfirePizza.Filter;
 using System.Data;
 using System.Net.Mail;
 
-namespace PoolSideMenu.Controllers
+namespace BonfirePizza.Controllers
 {
     public class HomeController : Controller
     {
@@ -148,7 +148,7 @@ namespace PoolSideMenu.Controllers
         [OnAction(ButtonName = "SendSMS")]
         public ActionResult SendSMS(Home obj)
         {
-            
+
 
             string clientMob = "8077320232" + ',' + "7055087866" + ',' + "7906558228" + ',' + "8630943854";
             BLSMS.SendSMS2(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, clientMob, "You got orders from Room No: " + obj.RoomNo + ". Mobile No is: " + obj.MobileNo + ". -THE NEERAJ FOREST RESORT HOLISTIC HEALTH SPA", Common.SMSCredential.tempid, "1");
@@ -170,7 +170,7 @@ namespace PoolSideMenu.Controllers
                 mailServer.Send(mess1);
             }
 
-            string mobile2 =obj.MobileNo;
+            string mobile2 = obj.MobileNo;
             BLSMS.SendSMS(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, mobile2, "The Neeraj River Forest Resort has received your orders. As soon as you got your Orders. Have a nice day. - www.theneerajspa.com", Common.SMSCredential.customertempid, "1");
 
 
@@ -180,7 +180,7 @@ namespace PoolSideMenu.Controllers
             return RedirectToAction("Index");
         }
 
-          public virtual PartialViewResult MenuHotel()
+        public virtual PartialViewResult MenuHotel()
         {
             Home Menu = null;
 
@@ -226,10 +226,10 @@ namespace PoolSideMenu.Controllers
                 }
             }
 
-            
 
 
-            return Json(model,JsonRequestBehavior.AllowGet);
+
+            return Json(model, JsonRequestBehavior.AllowGet);
 
         }
 

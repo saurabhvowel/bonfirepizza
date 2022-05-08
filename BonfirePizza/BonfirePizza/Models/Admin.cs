@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace PoolSideMenu.Models
+namespace BonfirePizza.Models
 {
     public class Admin
     {
@@ -39,7 +39,15 @@ namespace PoolSideMenu.Models
         }
 
 
-        public DataSet SaveMainCategory()
+        public DataSet MainCategoryOnload ()
+        {
+            
+        DataSet ds = Connection.ExecuteQuery("MainCategoryOnload");
+            return ds;
+        }
+
+
+    public DataSet SaveMainCategory()
         {
             SqlParameter[] para = {
                                       new SqlParameter("@MainCategoryName", MainCategoryName),
