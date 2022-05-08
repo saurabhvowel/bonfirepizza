@@ -1,0 +1,274 @@
+/*
+=========================================
+    Custom Style CSS
+=========================================
+*/
+.reataurant_main {
+    padding: 2rem 0rem 2rem;
+    background-color: #243e89;
+}
+
+.reataurant_inner {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.restaurant_item {
+    padding: 1rem 0rem;
+}
+
+    .restaurant_item img {
+        width: 50%;
+    }
+
+.restaurant_form {
+    border: 2px solid #d2a569;
+    padding: 2rem 0rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+}
+
+    .restaurant_form h3 {
+        color: #cfa86f;
+        font-family: emoji;
+    }
+
+.restaurant_border {
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #d0a66c;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+    .restaurant_border:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #d0a66c;
+        outline: 0;
+        box-shadow: none;
+    }
+
+.white-btn {
+    padding: 0.625rem 1.875rem;
+    line-height: 25px;
+    background-color: #fff;
+    color: #d1a56c;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    border: 1px solid #d2a56c;
+    text-transform: capitalize;
+    box-shadow: 0px 2px 10px -1px rgb(0 0 0 / 19%);
+    -webkit-transition: all .4s ease-out 0s;
+    -o-transition: all .4s ease-out 0s;
+    -moz-transition: all .4s ease-out 0s;
+    transition: all .4s ease-out 0s;
+}
+
+    .white-btn:hover {
+        background-color: transparent;
+        color: #d1a56c;
+        border-color: #d1a56c;
+    }
+
+.backbtn {
+    padding: 0.425rem 1.875rem;
+    line-height: 25px;
+    background-color: #fff;
+    color: #d2a569;
+    border-radius: 5px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    border: 1px solid #d2a569;
+    text-transform: capitalize;
+    box-shadow: 0px 2px 10px -1px rgb(0 0 0 / 19%);
+    -webkit-transition: all .4s ease-out 0s;
+    -o-transition: all .4s ease-out 0s;
+    -moz-transition: all .4s ease-out 0s;
+    transition: all .4s ease-out 0s;
+}
+
+    .backbtn:hover {
+        background-color: transparent;
+        color: #d1a56c;
+        border-color: #d1a56c;
+    }
+
+.recipe_item {
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px;
+    padding-left: 30px;
+    flex-direction: row-reverse;
+    border: 1px solid #d29d5b;
+    margin-bottom: 10px;
+}
+
+    .recipe_item .ri_content {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-right: 10px;
+    }
+
+        .recipe_item .ri_content .ri_text {
+            max-width: 500px;
+        }
+
+            .recipe_item .ri_content .ri_text h3,
+            .recipe_item .ri_content .ri_cart h5 {
+                font-size: 18px;
+                font-family: emoji;
+                font-weight: 700;
+                margin-bottom: 0px;
+            }
+
+    .recipe_item .ri_img {
+        text-align: right;
+        position: relative;
+        border-left: 2px solid #d0a66c;
+        padding-left: 15px;
+        margin-right: 0px;
+    }
+
+        .recipe_item .ri_img .form-check-input:checked {
+            background-color: #d0a66c;
+            border-color: #d0a66c;
+        }
+
+        .recipe_item .ri_img .form-check-input:focus {
+            border-color: #d0a66c;
+            outline: 0;
+            box-shadow: none;
+        }
+
+
+
+.restaurant_dropdown .form-select {
+    border-color: #d29d5b;
+    outline: 0;
+    font-family: emoji;
+    box-shadow: none;
+}
+
+    .restaurant_dropdown .form-select:focus {
+        border-color: #d29d5b;
+        outline: 0;
+        box-shadow: none;
+    }
+
+.form-label {
+    margin-bottom: .5rem;
+    font-family: emoji;
+    color: #cfa86f;
+}
+
+.restaurant_dropdown {
+    margin-bottom: 20px;
+}
+
+.recipe_item .input-group > .form-control, .input-group > .form-select {
+    position: relative;
+    flex: 0 0 auto;
+    width: 30%;
+    min-width: 0;
+}
+
+.recipe_item .input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+    margin-right: -60px;
+}
+
+.home_btn {
+    padding: 0rem 0rem 2rem;
+}
+
+
+/**************************************** Responsive Design *************************************************/
+
+
+@media (max-width: 991px) {
+    .reataurant_main {
+        padding: 1rem 0rem 2rem;
+        background-color: #243e89;
+    }
+    .restaurant_item {
+        padding: 1rem 0rem 0rem;
+    }
+    .reataurant_inner {
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    .home_btn a {
+        display: block;
+    }
+
+    .restaurant_item img {
+        width: 50%;
+    }
+
+    .quantity-left-minus {
+        padding: 0px 5px 0px;
+    }
+
+    .quantity-right-plus {
+        padding: 0px 5px 0px;
+    }
+
+    .recipe_item .ri_img {
+        padding-left: 0px;
+    }
+
+    .recipe_item .form-check {
+        display: block;
+        min-height: 1.5rem;
+        padding-left: 0em;
+        margin-bottom: .125rem;
+    }
+
+    .recipe_item {
+        padding-left: 10px;
+    }
+
+        .recipe_item .form-control {
+            padding: 0rem 0rem;
+        }
+
+        .recipe_item .input-group > .form-control, .input-group > .form-select {
+            width: 40%;
+        }
+
+        .recipe_item .ri_content .ri_text h3, .recipe_item .ri_content .ri_cart h5 {
+            font-size: 14px;
+            font-family: emoji;
+            font-weight: 700;
+            margin-bottom: 0px;
+        }
+
+        .recipe_item .ri_img {
+            border-left: 0px solid #d0a66c;
+        }
+    .home_btn {
+        padding: 0rem 0rem 0.1rem;
+    }   
+}
+
+@media (max-width: 767px) {
+}
+
+@media (max-width:330px) {
+}
+
+.home_btn a.active {
+    background-color: darkblue;
+    cursor:pointer;
+}

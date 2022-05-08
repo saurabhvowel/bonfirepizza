@@ -1,0 +1,128 @@
+﻿@model BonfirePizza.Models.Admin
+
+@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Menu", "Admin", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @class = "forms-sample" }))
+{
+    if (TempData["Menu"] != null)
+    {
+        <div class="@TempData["Class"]">
+            @TempData["Menu"]
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Menu</h4>
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label>Menu:</label>
+                    @Html.TextBoxFor(m => m.MenuName, new { @class = "form-control", @Placeholder = "Menu Name", maxlength = "50" })
+                    @Html.HiddenFor(m => m.PK_MenuID, new { @class = "form-control" })
+                </div>
+
+                <div class="col">
+                    <br />
+                    <input class="btn btn-success  " onclick="return validateform()" type="submit" value="Save" id="btnSave" name="saveBtn" />
+                    @*  <a href="#" class="btn btn-success btn-sm" onclick="return updateMenu()" id="btnUpdate" style="display: none">Update</a>*@
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <br />
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Menu List</h4>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered dataTable no-footer">
+                            <thead>
+                                <tr>
+                                    <th>SNo</th>
+                                    <th>Menu Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    if (Model.lstMenu != null)
+                                    {
+                                        int i = 1;
+                                        foreach (var Item in Model.lstMenu)
+                                        {
+                                            <tr class="text-left">
+                                                <td>@i</td>
+                                                <td>@Item.MenuName</td>
+
+                                                <td>
+                                                    <a href="/Admin/DeleteMenu/@Item.PK_MenuID" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you wish to delete this ?');">Delete</a>
+                                                </td>
+                                            </tr>
+                                            i++;
+                                        }
+                                    }
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+}
+
+<script src="~/assets/libs/jquery-ui/jquery-ui.min.js"></script>
+<script>
+
+    function editMenu(Menuname, Menuid) {
+        $('#MenuName').val(Menuname);
+        $('#PK_MenuID').val(Menuid);
+        $('#ContentPlaceHolder1_imgProductImage').attr("src", img);
+        $('#btnSave').hide();
+        $('#btnUpdate').show();
+    }
+
+    function updateMenu() {
+        $(".errortext").removeClass("errortext");
+        if ($('#MenuName').val() == '') {
+            $("#MenuName").addClass('errortext');
+            $('#MenuName').focus();
+            return false;
+        }
+
+    }
+
+    function validateform() {
+        $(".errortext").removeClass("errortext");
+        if ($('#MenuName').val() == '') {
+            $("#MenuName").addClass('errortext');
+            $('#MenuName').focus();
+            return false;
+        }
+
+        return true;
+    }
+
+</script>
+
+<style>
+    .errortext {
+        border: 1px solid red !important;
+        background-color: #fff0f0 !important;
+    }
+</style>
+

@@ -1,0 +1,46 @@
+﻿@model BonfirePizza.Models.Home
+
+<style>
+    .yamm .dropdown-menu li a {
+   
+    padding: 0px !important;
+}
+</style>
+    
+
+<ul>
+    @if (Model != null)
+    {
+        if (Model.lstMenu != null)
+        {
+
+            foreach (var item in Model.lstMenu)
+            {
+                if (item.Url != "#")
+                {
+                    <li class="active">
+                        <a href="@item.Url"><i class="fe fe-home"></i> @item.MenuName</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="submenu">
+                        <a href="@item.Url"><i class="fe fe-document"></i> <span> @item.MenuName</span> <span class="menu-arrow"></span></a>
+                        <ul style="display: none;">
+                            @foreach (var item1 in Model.lstsubmenu)
+                            {
+                                if (item1.MenuId == item.MenuId)
+                                {
+                                    <li><a href="@item1.Url">@item1.SubMenuName</a></li>
+                                }
+                            }
+                           
+                        </ul>
+                    </li>
+
+                }
+            }
+        }
+    }
+   
+</ul>

@@ -1,0 +1,385 @@
+﻿@model BonfirePizza.Models.Home
+@{
+
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <title>Menu</title>
+</head>
+
+<body>
+
+    @using (Html.BeginForm("Index2", "Home", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
+    {
+        <div class="reataurant_main">
+            <div class="reataurant_inner">
+                <div class="home_btn text-center">
+                    <a href="../Home/Index" class="backbtn text-decoration-none ms-lg-4 mt-lg-0 mt-4">Pool Side Menu</a>
+
+                    <a href="../Home/Index2" class="backbtn text-decoration-none ms-lg-4 mt-lg-0 mt-4 active">Room Dinning Menu</a>
+                    <a href="javascript:void(0)" class="backbtn text-decoration-none ms-lg-4 mt-lg-0 mt-4">Midnight Menu</a>
+                </div>
+                <div class="restaurant_item text-center">
+                    <img src="../assets/images/pool_side_menu_logo.png" class="img-fluid" alt="reataurant_menu">
+                </div>
+                <div class="restaurant_item text-center">
+                    <img src="../assets/images/pool_side_menu_title.png" class="img-fluid" alt="reataurant_menu">
+                </div>
+                <div class="restaurant_item">
+
+                    <div class="restaurant_dropdown">
+
+
+                        @Html.HiddenFor(m => m.Null)
+                        @Html.HiddenFor(m => m.alreadycontain)
+                        @Html.HiddenFor(m => m.Orders)
+
+
+                        @Html.DropDownListFor(m => m.PK_MainCategoryID, new SelectList(ViewBag.ddlMainCategory, "Value", "Text"), new { @class = "form-select", @onChange = "return onSelectMainCategory();" })
+
+                    </div>
+
+                    <div id="search">
+                        @if (Model != null)
+                        {
+                            if (Model.lstCategoryItems != null)
+                            {
+                                int i = 1;
+                                foreach (var Item in Model.lstCategoryItems)
+                                {
+                                    @*<div class="recipe_item">
+                                <div class="ri_img">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </div>
+                                </div>
+                                <div class="ri_content">
+                                    <div class="ri_text">
+                                        <h3>@Item.ItemName</h3>
+                                    </div>
+                                    <div class="ri_cart">
+                                        <h5 class="price">@Item.Price </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            i++;*@
+                                }
+                            }
+
+                        }
+
+                    </div>
+
+
+                </div>
+                <div class="restaurant_form">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-10 col-sm-12">
+                                <h3>Request Order</h3>
+                                <br>
+                            </div>
+                            <div class="col-lg-2 col-sm-12">
+                                <label for="exampleFormControlInput1" class="form-label">Total: </label>    @Html.TextBoxFor(m => m.Price, new { @class = "form-control restaurant_border", @placeholder = "Total", @readonly = "readonly" })
+
+                            </div>
+                            <div class="col-lg-4 col-sm-12">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Mobile No</label>
+
+                                    @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control restaurant_border", @placeholder = "Mobile No", maxlength = "10", minlength = "10", onkeypress = "return validateNumber(event);" })
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-12">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Room No</label>
+                                    @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control restaurant_border", @placeholder = "Room No", onkeypress = "return validateNumber(event);" })
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-12">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Preferable Time</label>
+                                    @Html.DropDownListFor(m => m.PreferableTime, new SelectList(ViewBag.ddlPreferableTime, "Value", "Text"), new { @class = "form-select restaurant_border", @onChange = "return onSelectMainCategory();" })
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-sm-12">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Orders</label>
+                                    @*<textarea class="form-control restaurant_border" id="exampleFormControlTextarea1" rows="3"></textarea>*@
+                                    @Html.TextAreaFor(m => m.ContainOrders, new { @class = "form-control restaurant_border", @placeholder = "Orders", @readonly = "readonly" })
+
+
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <input id="SendSMS" name="SendSMS" onclick="return validateform();" class="white-btn ms-lg-4 mt-lg-0 mt-4" type="submit" value="Submit" />
+                            </div>
+                            <p style="color:red">
+                                Note* : Exclude service Tax
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    }
+    <script src="../assets/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
+
+<script src="../../AdminCSS/js/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        if ($('#Null').val() != "") {
+            alert('Your Orders are Placed.');
+        }
+    });
+
+
+    function validateform() {
+        $(".errortext").removeClass("errortext");
+
+        if ($('#PK_MainCategoryID').val() == '0') {
+            $("#PK_MainCategoryID").addClass('errortext');
+            $('#PK_MainCategoryID').focus();
+            return false;
+        }
+        if ($('#MobileNo').val() == '') {
+            $("#MobileNo").addClass('errortext');
+            $('#MobileNo').focus();
+            return false;
+        }
+        if ($('#RoomNo').val() == '') {
+            $("#RoomNo").addClass('errortext');
+            $('#RoomNo').focus();
+            return false;
+        }
+        if ($('#PreferableTime').val() == '') {
+            $("#PreferableTime").addClass('errortext');
+            $('#PreferableTime').focus();
+            alert('Please select PreferableTime')
+            return false;
+        }
+        if ($('#ContainOrders').val() == "") {
+            alert('Please select atleast 1 Order.')
+            return false;
+        }
+        return true;
+    }
+
+    function validateNumber(event) {
+        var key = window.event ? event.keyCode : event.which;
+        if (event.keyCode === 8 || event.keyCode === 45) {
+            return true;
+        } else if (key < 48 || key > 57) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function onSelectMainCategory() {
+
+        var PK_MainCategoryID = $('#PK_MainCategoryID').val();
+        $.ajax({
+            url: "/Home/RoomDinningCategoryItems",
+            type: 'GET',
+            dataType: 'JSON',
+            data: { 'PK_MainCategoryID': PK_MainCategoryID },
+
+            success: function (data) {
+
+                if (data.lstCategoryItems.length > 0) {
+                    var t = data.lstCategoryItems;
+                    $('#search').html("");
+                    for (var i = 0; i < t.length; i++) {
+
+                        //var html = '<div class="recipe_item"><div class="ri_img"><div class="form-check"><input class="form-check-input" type="checkbox" name="checkBoxListName" onclick="return AddOrders(\'' + t[i].ItemName + '\',\'' + t[i].Price + '\')" value="' + t[i].ItemName + '" id="flexCheckDefault"></div></div><div class="ri_content"><div class="ri_text"><h3 value="">' + t[i].ItemName + '</h3></div><div class="ri_cart"><h5 class="price">' + t[i].Price + ' </h5></div></div></div>';
+
+                        var html = '<div class="recipe_item"><div class="ri_img"><div class="form-check"><div class="input-group"><span class="input-group-btn" > <button type="button" disabled class="quantity-left-minus btn btn-danger btn-number"  id="quantityminus' + t[i].PK_CategoryItemsID + '" onclick="return subOnclick(\'' + t[i].PK_CategoryItemsID + '\',\'' + t[i].ItemName + '\',\'' + t[i].Price + '\')" data-type="minus" data-field=""><i class="fas fa-minus"></i></button></span><input type="text" disabled id="quantity' + t[i].PK_CategoryItemsID + '" name="quantity' + t[i].PK_CategoryItemsID + '" class="form-control input-number text-center" value="0" min="0" max="100"><span class="input-group-btn"><button type="button" onclick="return addOnclick(\'' + t[i].PK_CategoryItemsID + '\',\'' + t[i].ItemName + '\',\'' + t[i].Price + '\')" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field=""><i class="fas fa-plus"></i></button></span></div ></div ></div > <div class="ri_content"><div class="ri_text"><h3 value="">' + t[i].ItemName + '</h3></div><div class="ri_cart"><h5 class="price">' + t[i].Price + ' </h5></div></div></div > ';
+
+
+                        $('#search').append(html);
+
+                    }
+                }
+            },
+            error: {
+
+            }
+        });
+    }
+
+    function addOnclick(id, name, price) {
+        $('#quantityminus' + id).prop('disabled', false);
+        var newqty = $('#quantity' + id).val();
+        // Get the field name
+        var quantity = Number(price);
+
+        // If is not undefined
+
+        $('#quantity' + id).val(Number(newqty) + Number(1));
+        if ($('#ContainOrders').val().includes(name)) {
+            var previousOrders = $('#ContainOrders').val();
+            var price1 = Number(price) * Number($('#quantity' + id).val());
+
+
+            var previousPrice = Number($('#Price').val()) + Number(price);
+
+
+
+            $('#ContainOrders').val(previousOrders.replace(name + "(" + newqty + ")", name + "(" + $('#quantity' + id).val() + ")"))
+
+
+            $('#Price').val(previousPrice);
+        }
+        else {
+            if ($('#ContainOrders').val() == "") {
+                $('#ContainOrders').val(name);
+
+                $('#Price').val(Number(price) * Number($('#quantity' + id).val()));
+                if (newqty == "0") {
+                    $('#ContainOrders').val(name + "(" + $('#quantity' + id).val() + ")");
+                } else {
+                    $('#ContainOrders').val(name(newqty));
+                }
+
+            }
+            else {
+                var previous = $('#ContainOrders').val() + ',' + name;
+                var previousPrice = Number($('#Price').val()) + Number(price);
+                $('#ContainOrders').val(previous + "(" + $('#quantity' + id).val() + ")");
+                $('#Price').val(previousPrice);
+
+            }
+        }
+    }
+
+
+    function subOnclick(id, name, price) {
+
+        var quantid = $('#quantityminus' + id).val();
+        var newqty = $('#quantity' + id).val();
+
+        // If is not undefined
+
+        // Increment
+        if (newqty > 0) {
+            $('#quantity' + id).val(Number(newqty) - Number(1));
+        }
+        if ($('#ContainOrders').val().includes(name)) {
+            var remove = $('#ContainOrders').val();
+            var price1 = $('#Price').val();
+            //$('#ContainOrders').val(remove.replace(',' + name, ""));
+            if (Number(price) < Number(price1)) {
+                var previousPrice = Number($('#Price').val()) - Number(price);
+            } else {
+                var previousPrice = Number(price) - Number($('#Price').val());
+            }
+
+            $('#Price').val(previousPrice);
+            $('#ContainOrders').val(remove.replace(name + "(" + newqty + ")", name + "(" + $('#quantity' + id).val() + ")"))
+
+            if ($('#quantity' + id).val() != "0") {
+                /* $('#ContainOrders').val(name);*/
+                $('#Price').val(previousPrice);
+                $('#quantityminus' + id).prop('disabled', false);
+            } else {
+                $('#quantityminus' + id).prop('disabled', true);
+                if ($('#ContainOrders').val().includes(",")) {
+                    //$('#ContainOrders').val(remove.replace(',' + name + "(" + 1 + ")", ""));
+                    if ($('#ContainOrders').val().includes("," + name + "(" + $('#quantity' + id).val() + ")")) {
+                        $('#ContainOrders').val(remove.replace("," + name + "(" + newqty + ")", ""))
+                    } else if ($('#ContainOrders').val().includes(name + "(" + newqty + ")" + ",")) {
+                        $('#ContainOrders').val(remove.replace(name + "(" + newqty + ")" + ",", ""))
+                    } else {
+
+
+                        $('#ContainOrders').val(remove.replace(name + "(" + newqty + ")", ""))
+                    }
+
+
+                } else {
+                    $('#ContainOrders').val("");
+                }
+
+            }
+        }
+        else {
+            if ($('#ContainOrders').val() == "") {
+
+                if ($('#quantity' + id).val() != "0") {
+                    $('#ContainOrders').val(name);
+                    $('#Price').val(price);
+                }
+
+            }
+            else {
+                var previous = $('#ContainOrders').val() + ',' + name;
+                var previousPrice = Number($('#Price').val()) + Number(price);
+                $('#ContainOrders').val(previous);
+                $('#Price').val(previousPrice);
+
+            }
+        }
+    }
+
+    function AddOrders(name, price) {
+        var qty = "";
+
+        if ($('#ContainOrders').val().includes(name)) {
+            var remove = $('#ContainOrders').val();
+            var price1 = $('#Price').val();
+            $('#ContainOrders').val(remove.replace(',' + name, ""));
+            if (Number(price) < Number(price1)) {
+                var previousPrice = Number($('#Price').val()) - Number(price);
+            } else {
+                var previousPrice = Number(price) - Number($('#Price').val());
+            }
+
+            $('#Price').val(previousPrice);
+        }
+        else {
+            if ($('#ContainOrders').val() == "") {
+                $('#ContainOrders').val(name);
+
+                $('#Price').val(price);
+            }
+            else {
+                var previous = $('#ContainOrders').val() + ',' + name;
+                var previousPrice = Number($('#Price').val()) + Number(price);
+                $('#ContainOrders').val(previous);
+                $('#Price').val(previousPrice);
+
+            }
+        }
+
+
+
+    }
+
+</script>

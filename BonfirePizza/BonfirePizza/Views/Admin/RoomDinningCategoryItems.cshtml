@@ -1,0 +1,113 @@
+﻿@model BonfirePizza.Models.Admin
+
+@{
+    ViewBag.Title = "RoomDinningCategoryItems";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("RoomDinningCategoryItems", "Admin", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
+{
+
+    if (TempData["RoomDinningCategory"] != null)
+    {
+        <div class="@TempData["Class"]">
+            @TempData["RoomDinningCategory"]
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Room Dinning Category</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Select Main Category <span style="color: red">*</span></label>
+                        @Html.DropDownListFor(m => m.PK_MainCategoryID, new SelectList(ViewBag.ddlMainCategory, "Value", "Text"), new { @class = "form-control" })
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>
+                            Category Name <span style="color: red">*</span>
+                        </label>
+                        @Html.TextBoxFor(m => m.ItemName, new { @class = "form-control", @Placeholder = "Item Name" })
+                        @Html.HiddenFor(m => m.PK_CategoryItemsID, new { @class = "form-control" })
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Price <span style="color: red">*</span></label>
+                        @Html.TextBoxFor(m => m.Price, new { @class = "form-control", @Placeholder = "Price", maxlength = "50", @onkeypress = "return isNumberKey(event)" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @if (Model.PK_CategoryItemsID == null)
+                        {
+                            <input class="btn btn-success btn-sm" type="submit" onclick="return validateform();" value="Save" id="btnSave" name="btnSave" />
+                        }
+                        else
+                        {
+                            @Html.HiddenFor(m => m.PK_CategoryItemsID, new { @Value = @Model.PK_CategoryItemsID })
+                            <input class="btn btn-success btn-sm" type="submit" value="Update" id="btnUpdate" name="btnUpdate" />
+                        }
+                        <a class="btn btn-primary btn-sm" href="/Admin/RoomDinningCategoryItemsList">Back To List</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    function isNumberKey(evt) {
+
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+
+    function validateform() {
+        $(".errortext").removeClass("errortext");
+        if ($('#PK_MainCategoryID').val() == '0') {
+            $("#PK_MainCategoryID").addClass('errortext');
+            $('#PK_MainCategoryID').focus();
+            return false;
+        }
+        if ($('#ItemName').val() == '') {
+            $("#ItemName").addClass('errortext');
+            $('#ItemName').focus();
+            return false;
+        }
+        if ($('#Price').val() == '') {
+            $("#Price").addClass('errortext');
+            $('#Price').focus();
+            return false;
+        }
+
+        return true;
+    }
+
+</script>
+
+
+<style>
+    .errortext {
+        border: 1px solid red !important;
+        background-color: #fff0f0 !important;
+    }
+</style>
+

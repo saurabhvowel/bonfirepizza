@@ -1,0 +1,301 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from dreamguys.co.in/demo/ventura/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Aug 2019 05:42:47 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Admin Panel</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../AdminCSS/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="../../AdminCSS/css/font-awesome.min.css">
+
+    <!-- Feathericon CSS -->
+    <link rel="stylesheet" href="../../AdminCSS/css/feathericon.min.css">
+
+    <link rel="stylesheet" href="../../AdminCSS/plugins/morris/morris.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../../AdminCSS/css/style.css">
+
+    <style>
+        .dataTables_wrapper {
+            padding-top: 10px;
+            width: 100%;
+        }
+
+        * {
+            outline: none;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        user agent stylesheet div {
+            display: block;
+        }
+
+        .dt-buttons {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding-top: 5px;
+        }
+
+        * {
+            outline: none;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        user agent stylesheet div {
+            display: block;
+        }
+
+        .card {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0,0,0,.125);
+            border-radius: .25rem;
+        }
+
+        .dt-buttons .dt-button {
+            background: #1976d2 none repeat scroll 0 0;
+            border-radius: 4px;
+            color: black;
+            margin-right: 3px;
+            padding: 5px 15px;
+        }
+
+        a {
+            color: #0c0c0c;
+            text-decoration: none;
+            background-color: transparent;
+            -webkit-text-decoration-skip: objects;
+        }
+
+        * {
+            outline: none;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        user agent stylesheet a:-webkit-any-link {
+            color: -webkit-link;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .dataTables_filter {
+            float: right;
+        }
+
+        * {
+            outline: none;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        user agent stylesheet div {
+            display: block;
+        }
+
+        .dataTables_info, .dataTables_length {
+            display: inline-block;
+        }
+
+        * {
+            outline: none;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        user agent stylesheet div {
+            display: block;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover {
+            background: transparent none repeat scroll 0 0;
+            border: 1px solid rgba(120,130,140,.13);
+            box-shadow: none;
+            color: #67757c;
+            cursor: default;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            border: 1px solid rgba(120,130,140,.13);
+            box-sizing: border-box;
+            color: #67757c;
+            cursor: pointer;
+            display: inline-block;
+            min-width: 1.5em;
+            padding: .5em 1em;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        a {
+            color: #0c0c0c;
+            text-decoration: none;
+            background-color: transparent;
+            -webkit-text-decoration-skip: objects;
+        }
+
+        * {
+            outline: none;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        .dataTables_wrapper .dataTables_paginate {
+            float: right;
+            padding-top: .25em;
+            text-align: right;
+        }
+
+        .dt-buttons {
+            margin-left: 0px !important;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+
+        <!-- Header -->
+        <div class="header">
+
+            <!-- Logo -->
+            <div class="header-left">
+                <a href="/Admin/Dashboard" class="logo">
+                    <img src="~/assets/images/dhara shop.png" />
+                </a>
+                <a href="/Admin/Dashboard" class="logo logo-small">
+                    <img src="~/assets/images/dhara shop.png" alt="Logo" width="30" height="30">
+                </a>
+            </div>
+            <!-- /Logo -->
+
+            <a href="javascript:void(0);" id="toggle_btn">
+                <i class="fe fe-text-align-left"></i>
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <a class="mobile_btn" id="mobile_btn">
+                <i class="fa fa-bars"></i>
+            </a>
+            <!-- /Mobile Menu Toggle -->
+            <!-- Header Right Menu -->
+            <ul class="nav user-menu">
+                <!-- User Menu -->
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <span class="user-img"><img class="rounded-circle" src="@Session["ProfilePic"]" width="31" alt="Ryan Taylor"></span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="user-header">
+                            <div class="avatar avatar-sm">
+                                <img src="@Session["ProfilePic"]" alt="User Image" class="avatar-img rounded-circle">
+                            </div>
+                            <div class="user-text">
+                                <h6>@Session["Name"]</h6>
+                                @if (@Session["UserType"].ToString() == "Admin")
+                                {
+                                    <p class="text-muted mb-0">Administrator</p>
+                                }
+                                
+                            </div>
+                        </div>
+                        @*<a class="dropdown-item" href="#">My Profile</a>
+                            <a class="dropdown-item" href="#">Account Settings</a>*@
+                        <a class="dropdown-item" href="/Home/Login">Logout</a>
+                    </div>
+                </li>
+                <!-- /User Menu -->
+
+            </ul>
+            <!-- /Header Right Menu -->
+
+        </div>
+        <!-- /Header -->
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+
+                    @{Html.RenderAction("MenuHotel", "Home", new { area = "" });}
+
+                </div>
+            </div>
+        </div>
+        <!-- /Sidebar -->
+        <!-- Page Wrapper -->
+        <div class="page-wrapper">
+
+            <div class="content container-fluid">
+                @RenderBody()
+            </div>
+        </div>
+        <!-- /Page Wrapper -->
+
+    </div>
+    <!-- /Main Wrapper -->
+    <!-- jQuery -->
+    <script src="../../AdminCSS/js/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap Core JS -->
+    <script src="../../AdminCSS/js/popper.min.js"></script>
+    <script src="../../AdminCSS/js/bootstrap.min.js"></script>
+
+    <!-- Slimscroll JS -->
+    <script src="../../AdminCSS/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <script src="../../AdminCSS/plugins/raphael/raphael.min.js"></script>
+    <script src="../../AdminCSS/plugins/morris/morris.min.js"></script>
+    <script src="../../AdminCSS/js/chart.morris.js"></script>
+
+    <!-- Custom JS -->
+    <script src="../../AdminCSS/js/script.js"></script>
+
+    <script src="../Datatablecss/datatables/datatables.min.js"></script>
+    <script src="../Datatablecss/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="../Datatablecss/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="../Datatablecss/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="../Datatablecss/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="../Datatablecss/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="../Datatablecss/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="../Datatablecss/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <script src="../Datatablecss/datatables/datatables-init.js"></script>
+
+</body>
+<!-- Mirrored from dreamguys.co.in/demo/ventura/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Aug 2019 05:43:15 GMT -->
+</html>
