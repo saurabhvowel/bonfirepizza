@@ -1,0 +1,87 @@
+﻿@model PoolSideMenu.Models.Home
+
+
+@{
+    ViewBag.Title = "AdminLogin";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from dreamguys.co.in/demo/ventura/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Aug 2019 05:44:18 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Admin Login</title>
+
+    <!-- Favicon -->
+    @*<link rel="shortcut icon" type="image/x-icon" href="../AdminCSS/img/favicon.png">*@
+    <link rel="icon" type="image/x-icon" href="../../img/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../AdminCSS/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="../AdminCSS/css/font-awesome.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../AdminCSS/css/style.css">
+
+    <!--[if lt IE 9]>
+        <script src="../AdminCSS/js/html5shiv.min.js"></script>
+        <script src="../AdminCSS/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper login-body">
+        <div class="login-wrapper">
+            <div class="container">
+                <div class="loginbox">
+                    <div class="login-left">
+                        <img class="img-fluid" src="../images/logo2.jpg" />
+                    </div>
+                    <div class="login-right">
+                        <div class="login-right-wrap">
+                            <h1>Login</h1>
+                            <p class="account-subtitle">Access to Admin Dashboard</p>
+
+                            <!-- Form -->
+                            @using (Html.BeginForm("LoginAction", "Home", FormMethod.Post, new { @id = "signupForm" }))
+                            {
+                                <div class="form-group">
+                                    <input class="form-control" type="text" id="txtLoginID" name="LoginID" placeholder="Login ID" required="">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="password" id="txtPassword" name="password" placeholder="Password" required="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Login" class="btn btn-primary btn-block" name="btnLogin" />
+                                </div>
+                                if (TempData["Login"] != null)
+                                {
+                                    <div class="alert alert-danger">
+                                        @TempData["Login"]
+                                    </div>
+                                }
+                            }
+                            <!-- /Form -->
+
+                           @* <div class="text-center forgotpass"><a href="/Home/ForgotPassword">Forgot Password?</a></div>*@
+                            <br />
+
+
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Main Wrapper -->
+
+
+</body>
+<!-- Mirrored from dreamguys.co.in/demo/ventura/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Aug 2019 05:44:18 GMT -->
+</html>

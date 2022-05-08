@@ -1,0 +1,136 @@
+﻿@model PoolSideMenu.Models.Admin
+
+@{
+    ViewBag.Title = "MainCategory";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("MainCategory", "Admin", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @class = "forms-sample" }))
+{
+    if (TempData["MainCategory"] != null)
+    {
+        <div class="@TempData["Class"]">
+            @TempData["MainCategory"]
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Main Category</h4>
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Select Menu <span style="color: red">*</span></label>
+                        @Html.DropDownListFor(m => m.PK_MenuID, new SelectList(ViewBag.ddlMenu, "Value", "Text"), new { @class = "form-control" })
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label>Main Category:</label>
+                    @Html.TextBoxFor(m => m.MainCategoryName, new { @class = "form-control", @Placeholder = "Main Category Name", maxlength = "50" })
+                    @Html.HiddenFor(m => m.PK_MainCategoryID, new { @class = "form-control" })
+                </div>
+
+                <div class="col">
+                    <br />
+                    <input class="btn btn-success  " onclick="return validateform()" type="submit" value="Save" id="btnSave" name="saveBtn" />
+                    @*  <a href="#" class="btn btn-success btn-sm" onclick="return updateMainCategory()" id="btnUpdate" style="display: none">Update</a>*@
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <br />
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Main Category List</h4>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered dataTable no-footer">
+                            <thead>
+                                <tr>
+                                    <th>SNo</th>
+                                    <th>Menu Name</th>
+                                    <th>Main Category Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    if (Model.lstMainCategory != null)
+                                    {
+                                        int i = 1;
+                                        foreach (var Item in Model.lstMainCategory)
+                                        {
+                                            <tr class="text-left">
+                                                <td>@i</td>
+                                                <td>@Item.MenuName</td>
+                                                <td>@Item.MainCategoryName</td>
+                                              
+                                                <td>
+                                                   <a href="/Admin/DeleteMainCategory/@Item.PK_MainCategoryID" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you wish to delete this ?');">Delete</a>
+                                                </td>
+                                            </tr>
+                                            i++;
+                                        }
+                                    }
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+}
+
+<script src="~/assets/libs/jquery-ui/jquery-ui.min.js"></script>
+<script>
+
+    function editMainCategory(maincategoryname, maincategoryid) {
+        $('#MainCategoryName').val(maincategoryname);
+        $('#PK_MainCategoryID').val(maincategoryid);
+        $('#ContentPlaceHolder1_imgProductImage').attr("src", img);
+        $('#btnSave').hide();
+        $('#btnUpdate').show();
+    }
+
+    function updateMainCategory() {
+        $(".errortext").removeClass("errortext");
+        if ($('#MainCategoryName').val() == '') {
+            $("#MainCategoryName").addClass('errortext');
+            $('#MainCategoryName').focus();
+            return false;
+        }
+
+    }
+
+    function validateform() {
+        $(".errortext").removeClass("errortext");
+        if ($('#MainCategoryName').val() == '') {
+            $("#MainCategoryName").addClass('errortext');
+            $('#MainCategoryNames').focus();
+            return false;
+        }
+
+        return true;
+    }
+  
+</script>
+
+<style>
+    .errortext {
+        border: 1px solid red !important;
+        background-color: #fff0f0 !important;
+    }
+</style>

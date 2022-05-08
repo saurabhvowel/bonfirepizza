@@ -1,0 +1,64 @@
+﻿@model PoolSideMenu.Models.Admin
+
+@{
+    ViewBag.Title = "CategoryItemsList";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("CategoryItemsList", "Admin", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
+{
+
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Category Items</h4>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered dataTable no-footer">
+                            <thead>
+                                <tr>
+                                    <th>S No.</th>
+                                    <th>Main Category</th>
+                                    <th>Items</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    if (Model.lstCategoryItems != null)
+                                    {
+                                        int i = 1;
+                                        foreach (var Item in Model.lstCategoryItems)
+                                        {
+                                <tr class="text-left">
+                                    <td>@i</td>
+                                    <td>@Item.MainCategoryName</td>
+                                    <td>@Item.ItemName</td>
+                                    <td>@Item.Price</td>
+                                    <td>
+                                        <a href="/Admin/CategoryItems?CategoryID=@Item.PK_CategoryItemsID" class="btn btn-info btn-sm">Edit</a>
+                                        <a href="/Admin/DeleteCategoryItems/@Item.PK_CategoryItemsID" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you wish to delete this Category?');">Delete</a>
+                                    </td>
+                                </tr>
+                                            i++;
+                                        }
+                                    }
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
