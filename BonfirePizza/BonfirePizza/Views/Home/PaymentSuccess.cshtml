@@ -1,0 +1,71 @@
+﻿@model BonfirePizza.Models.Home
+
+@{
+    ViewBag.Title = "PaymentSuccess";
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <title>Menu</title>
+</head>
+
+<body>
+
+    <div class="reataurant_main">
+        <div novalidate="" class="reataurant_inner">
+            <table class="">
+                <thead class="">
+                    <tr>
+                        <th class="text-center">Mobile No</th>
+                        <th class="text-center">Order No</th>
+                        <th class="text-center">Transaction Id</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr class="">
+
+                        <td data-label="Customer Name">
+                            <span class="h3">
+                                <span class="money" data-currency-usd=" @Model.MobileNo"> @Model.MobileNo</span>
+                            </span>
+                        </td>
+                        <td data-label="Order No">
+                            <span class="h3">
+                                <span class="money" data-currency-usd="@Model.OrderNo"> @Model.OrderNo</span>
+                            </span>
+                        </td>
+                        <td data-label="Transaction Id">
+                            <span class="h3">
+                                <span class="money" data-currency-usd=" @Model.PaymentID">  @Model.PaymentID</span>
+                            </span>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+
+                <div>
+
+                    <div class="group-sm"><a class="button button-default-outline-2 button-zakaria" href="../Home/Index">Go to Home</a></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="../assets/js/bootstrap.min.js"></script>
+</body>
+</html>

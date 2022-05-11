@@ -1,0 +1,84 @@
+﻿@model BonfirePizza.Models.Home
+
+
+@{
+    ViewBag.Title = "Payment";
+    Layout = null;
+}
+
+<input type="hidden" id="orderId" value="@Model.OrderNo" />
+<input type="hidden" id="amount" value="@Model.TotalAmount" />
+
+<script src="../../AdminCSS/js/jquery.min.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    $(document).ready(function () {
+        var options = {
+            "key": "rzp_test_ttV6lOBKMV4EU4", // Enter the Key ID generated from the Dashboard //rzp_test_dUtqKgNQUPcSDE //rzp_live_BwhTaXRxeklaAI
+            "amount": $('#amount').val(), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Udyogsathee",
+            "description": "Udyogsathee",
+            "image": "https://marbleandnaturalstonemart.store/logo2.jpg",
+            "order_id": $('#orderId').val(), //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+                window.location = "/Home/PaymentSuccess?paymentid=" + response.razorpay_order_id;
+
+            },
+
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#1188fb"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.on('payment.failed', function (response) {
+            alert("Payment Failed");
+        });
+        rzp1.open();
+        e.preventDefault();
+    });
+
+</script>
+
+
+
+@*<style>
+        .razorpay-payment-button {
+            transition: all linear 0.2s;
+            background: #108bea;
+            color: #fff;
+            border: none;
+            font-size: 13px;
+            line-height: 22px;
+            /*border-radius: 0;*/
+            padding: 6px 14px;
+            font-family: 'Montserrat', sans-serif;
+            border-radius: 2px;
+        }
+    </style>
+    <form action="/Customer/PaymentSuccess" method="POST">
+
+        <script src="https://checkout.razorpay.com/v1/checkout.js"
+                data-key="rzp_test_VSnr1Dm89baTnm"
+                data-amount="@Model.TotalAmount"
+                data-currency="INR"
+                data-order_id="@Model.OrderNo"
+                data-buttontext="Pay with Razorpay"
+                data-name="MNSM"
+                data-description="MARBLE & NATURAL STONE MART"
+                data-image="https://marbleandnaturalstonemart.store/logo2.jpg"
+                data-prefill.name="@Model.CustomerName"
+                data-prefill.email=""
+                data-prefill.contact="@Model.LoginId"
+                data-theme.color="#157ed2">
+        </script>
+        <input type="hidden" custom="Hidden Element" name="hidden">
+
+
+    </form>*@
+
+
+

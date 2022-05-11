@@ -65,6 +65,30 @@ namespace BonfirePizza.Models
             PreferableTime.Add(new SelectListItem { Text = "09 PM - 10 PM", Value = "09 AM - 10 AM" });
             return PreferableTime;
         }
+        public static string GenerateRandom()
+        {
+            Random r = new Random();
+            string s = "";
+            for (int i = 0; i < 6; i++)
+            {
+                s = string.Concat(s, r.Next(10).ToString());
+            }
+            return s;
+
+        }
+
+        public class PaymentGateWayDetails
+        {
+            public static string CreateOrder = "https://api.razorpay.com/v1/orders";
+            public static string CapturePayment = "https://api.razorpay.com/v1/payments/";
+            public static string FetchPaymentByOrderURL = "https://api.razorpay.com/v1/orders/";
+            public static string KeyName = "rzp_test_ttV6lOBKMV4EU4";
+            public static string SecretKey = "OHndiKT0TfN8dKT27eZADBdZ";
+
+            // public static string KeyName = "rzp_test_VSnr1Dm89baTnm";
+            // public static string SecretKey = "6G6WnMAj9UpxZ9mDZBPBof4A";
+        }
+
     }
-    
+
 }

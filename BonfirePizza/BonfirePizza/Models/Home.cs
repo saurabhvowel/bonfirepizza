@@ -7,8 +7,46 @@ using System.Web;
 
 namespace BonfirePizza.Models
 {
+    public class CreateOrder
+    {
+        public string amount { get; set; }
+        public string Pk_UserId { get; set; }
+        public string Type { get; set; }
+        public string TransactionType { get; set; }
+        public string OrderId { get; set; }
+
+        public DataSet SaveOrderDetails()
+        {
+            SqlParameter[] para = {
+
+                                      new SqlParameter("@amount", amount),
+                                      new SqlParameter("@Pk_UserId", Pk_UserId),
+                                      new SqlParameter("@Type", Type),
+                                      new SqlParameter("@TransactionType", TransactionType),
+                                      new SqlParameter("@OrderId", OrderId),
+
+                                  };
+            DataSet ds = Connection.ExecuteQuery("SaveOrderDetails", para);
+            return ds;
+        }
+
+
+    }
+    public class CreateOrderResponse
+    {
+        public string OrderId { get; set; }
+        public string Status { get; set; }
+        public string ErrorMessage { get; set; }
+    }
     public class Home
     {
+        public string TotalAmount { get; set; }
+        public string OrderNo { get; set; }
+        
+
+        public string PaymentMode { get; set; }
+        public string PaymentID { get; set; }
+        public string FinalAmount { get; set; }
         public string PK_MenuID { get; set; }
 
         public string alreadycontain { get; set; }
@@ -164,6 +202,19 @@ namespace BonfirePizza.Models
 
                                       };
             DataSet ds = Connection.ExecuteQuery("MenuList");
+            return ds;
+        }
+
+        public DataSet PlaceCustomerOrderOnline()
+        {
+            SqlParameter[] para = {
+                 new SqlParameter("@Mobile", MobileNo),
+             new SqlParameter("@PaymentMode", PaymentMode),
+            new SqlParameter("@transactionNo", PaymentID),
+            new SqlParameter("@FinalAmount", FinalAmount)
+            };
+
+            DataSet ds = Connection.ExecuteQuery("PlaceCustomerOrderMobile", para);
             return ds;
         }
     }
