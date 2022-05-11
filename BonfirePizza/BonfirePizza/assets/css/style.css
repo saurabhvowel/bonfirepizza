@@ -5,7 +5,7 @@
 */
 .reataurant_main {
     padding: 2rem 0rem 2rem;
-    background-color: #243e89;
+    background-color: #46892487;
 }
 
 .reataurant_inner {
@@ -22,14 +22,14 @@
     }
 
 .restaurant_form {
-    border: 2px solid #d2a569;
+    border: 2px solid #ed1b24;
     padding: 2rem 0rem;
     border-radius: 10px;
     margin-top: 2rem;
 }
 
     .restaurant_form h3 {
-        color: #cfa86f;
+        color: #ed1b24;
         font-family: emoji;
     }
 
@@ -76,7 +76,7 @@
     padding: 0.425rem 1.875rem;
     line-height: 25px;
     background-color: #fff;
-    color: #d2a569;
+    color: #ee1b24;
     border-radius: 5px;
     font-size: 0.9375rem;
     font-weight: 600;
@@ -164,7 +164,7 @@
 .form-label {
     margin-bottom: .5rem;
     font-family: emoji;
-    color: #cfa86f;
+    color: #ed1b24;
 }
 
 .restaurant_dropdown {
@@ -269,6 +269,6 @@
 }
 
 .home_btn a.active {
-    background-color: darkblue;
-    cursor:pointer;
+    background-color: #fff;
+    cursor: pointer;
 }

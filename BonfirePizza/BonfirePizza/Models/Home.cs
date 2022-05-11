@@ -48,6 +48,9 @@ namespace BonfirePizza.Models
         public string PaymentID { get; set; }
         public string FinalAmount { get; set; }
         public string PK_MenuID { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
 
         public string alreadycontain { get; set; }
         public string PreferableTime { get; set; }

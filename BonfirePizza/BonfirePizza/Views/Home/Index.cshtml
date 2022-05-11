@@ -26,8 +26,12 @@
     {
         <div class="reataurant_main">
             <div class="reataurant_inner">
+
+                <div class="restaurant_item text-center">
+                    <img src="../assets/images/pool_side_menu_logo.png" class="img-fluid" alt="reataurant_menu">
+                </div>
                 <div class="home_btn text-center">
-                
+
 
                     @if (Model != null)
                     {
@@ -35,19 +39,17 @@
                         {
                             foreach (var item in Model.lstMenu)
                             {
-                                <a onclick="return GetMainCategory('@item.PK_MenuID')" class="backbtn text-decoration-none ms-lg-4 mt-lg-0 mt-4 active">@item.MenuName</a>
+                                <a onclick="return GetMainCategory('@item.PK_MenuID')" class="backbtn text-decoration-none ms-lg-3 mt-lg-0 mt-3 active">@item.MenuName</a>
 
                             }
                         }
                     }
 
                 </div>
-                <div class="restaurant_item text-center">
-                    <img src="../assets/images/pool_side_menu_logo.png" class="img-fluid" alt="reataurant_menu">
-                </div>
-                <div class="restaurant_item text-center">
-                    <img src="../assets/images/pool_side_menu_title.png" class="img-fluid" alt="reataurant_menu">
-                </div>
+
+                @*<div class="restaurant_item text-center">
+                        <img src="../assets/images/pool_side_menu_title.png" class="img-fluid" alt="reataurant_menu">
+                    </div>*@
                 <div class="restaurant_item">
                     <div class="restaurant_dropdown">
 
@@ -105,8 +107,28 @@
                                 <br>
                             </div>
                             <div class="col-lg-2 col-sm-12">
-                                <label for="exampleFormControlInput1" class="form-label">Total: </label>    @Html.TextBoxFor(m => m.Price, new { @class = "form-control restaurant_border", @placeholder = "Total", @readonly = "readonly" })
+                                <label for="exampleFormControlInput1" class="form-label">Total Amount: </label>    @Html.TextBoxFor(m => m.Price, new { @class = "form-control restaurant_border", @placeholder = "Total Amount", @readonly = "readonly" })
 
+                            </div>
+
+                            <div class="col-lg-12 col-sm-12">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Order Details</label>
+                                    @*<textarea class="form-control restaurant_border" id="exampleFormControlTextarea1" rows="3"></textarea>*@
+                                    @Html.TextAreaFor(m => m.ContainOrders, new { @class = "form-control restaurant_border", @placeholder = "Order Details", @readonly = "readonly" })
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-12">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Name</label>
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control restaurant_border", @placeholder = "Name" })
+
+                                    @*<label for="exampleFormControlInput1" class="form-label">Room No</label>
+                                        @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control restaurant_border", @placeholder = "Room No", onkeypress = "return validateNumber(event);" })*@
+
+                                </div>
                             </div>
                             <div class="col-lg-4 col-sm-12">
                                 <div class="mb-3">
@@ -117,25 +139,30 @@
 
                                 </div>
                             </div>
+
                             <div class="col-lg-4 col-sm-12">
                                 <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Room No</label>
-                                    @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control restaurant_border", @placeholder = "Room No", onkeypress = "return validateNumber(event);" })
+                                    <label for="exampleFormControlInput1" class="form-label">Email</label>
+
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control restaurant_border", @placeholder = "Email" })
+
 
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-sm-12">
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Preferable Time</label>
-                                    @Html.DropDownListFor(m => m.PreferableTime, new SelectList(ViewBag.ddlPreferableTime, "Value", "Text"), new { @class = "form-select restaurant_border", @onChange = "return onSelectMainCategory();" })
+                            @*<div class="col-lg-4 col-sm-12">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Preferable Time</label>
+                                        @Html.DropDownListFor(m => m.PreferableTime, new SelectList(ViewBag.ddlPreferableTime, "Value", "Text"), new { @class = "form-select restaurant_border", @onChange = "return onSelectMainCategory();" })
 
-                                </div>
-                            </div>
+                                    </div>
+                                </div>*@
+
+
                             <div class="col-lg-12 col-sm-12">
                                 <div class="mb-3">
-                                    <label for="exampleFormControlTextarea1" class="form-label">Orders</label>
+                                    <label for="exampleFormControlTextarea1" class="form-label">Complete Address</label>
                                     @*<textarea class="form-control restaurant_border" id="exampleFormControlTextarea1" rows="3"></textarea>*@
-                                    @Html.TextAreaFor(m => m.ContainOrders, new { @class = "form-control restaurant_border", @placeholder = "Orders", @readonly = "readonly" })
+                                    @Html.TextAreaFor(m => m.Address, new { @class = "form-control restaurant_border", @placeholder = "Complete Address" })
 
 
                                 </div>
@@ -144,7 +171,7 @@
                                 <input id="SendSMS" name="SendSMS" onclick="return validateform();" class="white-btn ms-lg-4 mt-lg-0 mt-4" type="submit" value="Submit" />
                             </div>
                             <p style="color:red">
-                                Note* : Exclude service Tax
+                                Note* : Excluding Service Tax
                             </p>
                         </div>
                     </div>
@@ -167,7 +194,7 @@
     $(document).ready(function () {
 
         if ($('#Null').val() != "") {
-            alert('Your Orders are Placed.');
+            alert('Your Order has been Placed.');
         }
         var value = "";
 
