@@ -212,7 +212,7 @@
                 $("#PK_MainCategoryID").empty();
 
                 $("#PK_MainCategoryID").append(
-                    $('<option></option>').val(0).html('Select Main Category'));
+                    $('<option></option>').val(0).html('Select ' + data.MenuName));
                 $.each(data.ddlMainCategory, function (index, count) {
                     $("#PK_MainCategoryID").append(
                         $('<option></option>').val(count.Value).html(count.Text));
@@ -231,26 +231,32 @@
 
     function validateform() {
         $(".errortext").removeClass("errortext");
-
-        if ($('#PK_MainCategoryID').val() == '0') {
+        if ($('#PK_MainCategoryID').val() == 0) {
             $("#PK_MainCategoryID").addClass('errortext');
             $('#PK_MainCategoryID').focus();
+
+            alert('Please select Dishes')
             return false;
         }
+        if ($('#Name').val() == '') {
+            $("#Name").addClass('errortext');
+            $('#Name').focus();
+            return false;
+        }
+      
         if ($('#MobileNo').val() == '') {
             $("#MobileNo").addClass('errortext');
             $('#MobileNo').focus();
             return false;
         }
-        if ($('#RoomNo').val() == '') {
-            $("#RoomNo").addClass('errortext');
-            $('#RoomNo').focus();
+        if ($('#Email').val() == '') {
+            $("#Email").addClass('errortext');
+            $('#Email').focus();
             return false;
         }
-        if ($('#PreferableTime').val() == '') {
-            $("#PreferableTime").addClass('errortext');
-            $('#PreferableTime').focus();
-            alert('Please select PreferableTime')
+        if ($('#Address').val() == '') {
+            $("#Address").addClass('errortext');
+            $('#Address').focus();
             return false;
         }
         if ($('#ContainOrders').val() == "") {
@@ -300,7 +306,7 @@
                 $("#PK_MainCategoryID").empty();
 
                 $("#PK_MainCategoryID").append(
-                    $('<option></option>').val(0).html('Select Main Category'));
+                    $('<option></option>').val(0).html('Select '+ data.MenuName));
                 $.each(data.ddlMainCategory, function (index, count) {
                     $("#PK_MainCategoryID").append(
                         $('<option></option>').val(count.Value).html(count.Text));

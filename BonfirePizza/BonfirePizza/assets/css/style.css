@@ -5,7 +5,7 @@
 */
 .reataurant_main {
     padding: 2rem 0rem 2rem;
-    background-color: #46892487;
+    background-color: #fff;
 }
 
 .reataurant_inner {
@@ -54,7 +54,7 @@
     padding: 0.625rem 1.875rem;
     line-height: 25px;
     background-color: #fff;
-    color: #d1a56c;
+    color: #ed1b24;
     font-size: 0.9375rem;
     font-weight: 600;
     border: 1px solid #d2a56c;
@@ -67,8 +67,8 @@
 }
 
     .white-btn:hover {
-        background-color: transparent;
-        color: #d1a56c;
+        background: #ed1b24 !important;
+        color: #fff;
         border-color: #d1a56c;
     }
 
@@ -90,8 +90,8 @@
 }
 
     .backbtn:hover {
-        background-color: transparent;
-        color: #d1a56c;
+        background: #ed1b24 !important;
+        color: #fff;
         border-color: #d1a56c;
     }
 
@@ -198,7 +198,7 @@
 @media (max-width: 991px) {
     .reataurant_main {
         padding: 1rem 0rem 2rem;
-        background-color: #243e89;
+        background-color: #fff;
     }
     .restaurant_item {
         padding: 1rem 0rem 0rem;

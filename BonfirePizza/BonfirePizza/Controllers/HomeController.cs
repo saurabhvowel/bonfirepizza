@@ -154,8 +154,8 @@ namespace BonfirePizza.Controllers
         {
 
 
-            string clientMob = "8077320232" + ',' + "7055087866" + ',' + "7906558228" + ',' + "8630943854";
-            //BLSMS.SendSMS2(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, clientMob, "You got orders from Room No: " + obj.RoomNo + ". Mobile No is: " + obj.MobileNo + ". -THE NEERAJ FOREST RESORT HOLISTIC HEALTH SPA", Common.SMSCredential.tempid, "1");
+            string clientMob = "7897294077";
+            BLSMS.SendSMS2(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, clientMob, "You got orders from Mobile No: " + obj.MobileNo + ". -THE BoneFire Pizza", Common.SMSCredential.tempid, "1");
             CreateOrder obj1 = new CreateOrder();
             Session["sub_total"] = obj.Price;
             Session["Mobile"] = obj.MobileNo;
@@ -194,23 +194,25 @@ namespace BonfirePizza.Controllers
             }
 
 
-            //SmtpClient mailServer = new SmtpClient("smtp.gmail.com", 587);
-            //mailServer.EnableSsl = true;
-            //mailServer.UseDefaultCredentials = true;
-            //mailServer.Credentials = new System.Net.NetworkCredential("theneerajforest@gmail.com", "Neerajforest@123");
+            SmtpClient mailServer = new SmtpClient("smtp.gmail.com", 587);
+            mailServer.EnableSsl = true;
+            mailServer.UseDefaultCredentials = true;
+            mailServer.Credentials = new System.Net.NetworkCredential("voweldigitaladworld@gmail.com", "mudmnvgqtyvffkmq");
 
-            //using (var mess1 = new MailMessage("theneerajforest@gmail.com", "order@theneerajforestresort.com")
-            //{
-            //    Subject = "Order from Room No: " + obj.RoomNo,
-            //    Body = "His/Her orders are : " + obj.ContainOrders + ". And His/Her preferred time is: " + obj.PreferableTime
-            //})
-            //{
-            //    mess1.IsBodyHtml = true;
-            //    mailServer.Send(mess1);
-            //}
+            using (var mess1 = new MailMessage("voweldigitaladworld@gmail.com", "voweldigitaladworld@gmail.com")
+            {
+                Subject = "The Bonefire Pizza Order ",
+                Body = "Name: " + obj.Name + " , Mobile: " + obj.MobileNo + " , Email: " + obj.Email + " , Address: " + obj.Address + " , & His/Her orders are : " + obj.ContainOrders +  " . The total amount is : " + obj.Price
+            })
+            
+          
+            {
+                mess1.IsBodyHtml = true;
+                mailServer.Send(mess1);
+            }
 
             string mobile2 = obj.MobileNo;
-           // BLSMS.SendSMS(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, mobile2, "The Neeraj River Forest Resort has received your orders. As soon as you got your Orders. Have a nice day. - www.theneerajspa.com", Common.SMSCredential.customertempid, "1");
+            BLSMS.SendSMS(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, mobile2, "The Bonfire Pizza has received your orders. As soon as you got your Orders. Have a nice day.", Common.SMSCredential.customertempid, "1");
 
 
 
@@ -438,7 +440,7 @@ namespace BonfirePizza.Controllers
 
             using (var mess1 = new MailMessage("theneerajforest@gmail.com", "order@theneerajforestresort.com")
             {
-                Subject = "Order from Room No: " + obj.RoomNo,
+                Subject = "Order for The Bonefire Pizza" ,
                 Body = "His/Her orders are : " + obj.ContainOrders + ". And His/Her preferred time is: " + obj.PreferableTime
             })
             {

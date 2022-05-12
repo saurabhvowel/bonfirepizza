@@ -82,7 +82,7 @@ namespace BonfirePizza.Controllers
 
                 }
             }
-
+            model.MenuName = ds.Tables[0].Rows[0]["MenuName"].ToString();
             model.ddlMainCategory = ddlMainCategory;
             #endregion
             return Json(model, JsonRequestBehavior.AllowGet);
@@ -105,7 +105,7 @@ namespace BonfirePizza.Controllers
 
                 }
             }
-
+            model.MenuName = ds.Tables[0].Rows[0]["MenuName"].ToString();
             model.ddlMainCategory = ddlMainCategory;
             #endregion
             return Json(model, JsonRequestBehavior.AllowGet);
