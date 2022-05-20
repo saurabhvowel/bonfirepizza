@@ -19,7 +19,7 @@
             "currency": "INR",
             "name": "The Bonefire Pizza",
             "description": "The Bonefire Pizza",
-            "image": "https://marbleandnaturalstonemart.store/logo2.jpg",
+            "image": "../assets/images/pool_side_menu_logo.png",
             "order_id": $('#orderId').val(), //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             "handler": function (response) {
                 window.location = "/Home/PaymentSuccess?paymentid=" + response.razorpay_order_id;
@@ -69,7 +69,7 @@
                 data-buttontext="Pay with Razorpay"
                 data-name="MNSM"
                 data-description="MARBLE & NATURAL STONE MART"
-                data-image="https://marbleandnaturalstonemart.store/logo2.jpg"
+                data-image="../assets/images/pool_side_menu_logo.png"
                 data-prefill.name="@Model.CustomerName"
                 data-prefill.email=""
                 data-prefill.contact="@Model.LoginId"

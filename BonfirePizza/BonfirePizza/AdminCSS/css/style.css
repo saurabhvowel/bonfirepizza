@@ -1897,16 +1897,16 @@ html.menu-opened body {
     min-height: 500px;
     width: 100%;
 }
-.login-wrapper .loginbox .login-left {
-    align-items: center;
-    background: linear-gradient(180deg, #3949ab, #2962ff);
-    border-radius: 6px 0 0 6px;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px;
-    width: 400px;
-    display: flex;
-}
+	.login-wrapper .loginbox .login-left {
+		align-items: center;
+		background: linear-gradient(180deg, #b0b545, #e42525c2);
+		border-radius: 6px 0 0 6px;
+		flex-direction: column;
+		justify-content: center;
+		padding: 80px;
+		width: 400px;
+		display: flex;
+	}
 .login-wrapper .loginbox .login-right {
     align-items: center;
     display: flex;
