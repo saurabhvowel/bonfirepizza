@@ -9,6 +9,12 @@
 <html lang="en">
 
 <head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,33 +30,27 @@
 <body>
 
     <div class="reataurant_main">
-        <div novalidate="" class="reataurant_inner">
-            <table class="">
-                <thead class="">
+        <div novalidate="" >
+            <table style="width:100%">
+                <thead class="text-center">
                     <tr>
-                        <th class="text-center">Mobile No</th>
-                        <th class="text-center">Order No</th>
-                        <th class="text-center">Transaction Id</th>
+                        <th>Mobile No</th>
+                        <th>Order No</th>
+                        <th>Transaction Id</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    <tr class="">
+                    <tr class="text-center">
 
-                        <td data-label="Customer Mobile">
-                            <span class="h3">
-                                <span class="money" data-currency-usd=" @Model.MobileNo"> @Model.MobileNo</span>
-                            </span>
+                        <td data-label="Customer Mobile">                           
+                                <span  data-currency-usd=" @Model.MobileNo"> @Model.MobileNo</span>                           
                         </td>
-                        <td data-label="Order No">
-                            <span class="h3">
-                                <span class="money" data-currency-usd="@Model.OrderNo"> @Model.OrderNo</span>
-                            </span>
+                        <td data-label="Order No">                           
+                                <span  data-currency-usd="@Model.OrderNo"> @Model.OrderNo</span>                           
                         </td>
-                        <td data-label="Transaction Id">
-                            <span class="h3">
-                                <span class="money" data-currency-usd=" @Model.PaymentID">  @Model.PaymentID</span>
-                            </span>
+                        <td data-label="Transaction Id">                           
+                                <span  data-currency-usd=" @Model.PaymentID">  @Model.PaymentID</span>
                         </td>
 
                     </tr>

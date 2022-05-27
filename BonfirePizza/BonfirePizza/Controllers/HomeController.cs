@@ -155,11 +155,11 @@ namespace BonfirePizza.Controllers
 
 
             string clientMob = "7897294077";
-            BLSMS.SendSMS2(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, clientMob, "You got orders from Mobile No: " + obj.MobileNo + ". -THE BoneFire Pizza", Common.SMSCredential.tempid, "1");
+            BLSMS.SendSMS2(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, clientMob, "You got orders from Mobile No: " + obj.MobileNo + ". -BoneFire Pizza", Common.SMSCredential.tempid, "1");
             CreateOrder obj1 = new CreateOrder();
-            Session["sub_total"] = obj.Price;
+            Session["sub_total"] = obj.PaidPrice;
             Session["Mobile"] = obj.MobileNo;
-            ViewBag.CartTotal = Math.Round(Convert.ToDecimal(obj.Price) * 100);
+            ViewBag.CartTotal = Math.Round(Convert.ToDecimal(obj.PaidPrice) * 100);
             CreateOrderResponse obj2 = new CreateOrderResponse();
             string random = Common.GenerateRandom();
             try
@@ -180,7 +180,7 @@ namespace BonfirePizza.Controllers
                 obj1.Pk_UserId = Session["Mobile"].ToString();
                 obj1.TransactionType = "Wallet Web";
                 obj1.Type = "Card";
-                obj1.amount = obj.Price;
+                obj1.amount = obj.PaidPrice;
                 DataSet ds = obj1.SaveOrderDetails();
 
                 Session["OrderId"] = order["id"].ToString();
@@ -202,7 +202,7 @@ namespace BonfirePizza.Controllers
             using (var mess1 = new MailMessage("voweldigitaladworld@gmail.com", "voweldigitaladworld@gmail.com")
             {
                 Subject = "The Bonefire Pizza Order ",
-                Body = "Name: " + obj.Name + " , Mobile: " + obj.MobileNo + " , Email: " + obj.Email + " , Address: " + obj.Address + " , & His/Her orders are : " + obj.ContainOrders +  " . The total amount is : " + obj.Price
+                Body = "Name: " + obj.Name + " , Mobile: " + obj.MobileNo + " , Email: " + obj.Email + " , Address: " + obj.Address + " , & His/Her orders are : " + obj.ContainOrders +  " . The total amount is : " + obj.PaidPrice
             })
             
           
@@ -212,7 +212,7 @@ namespace BonfirePizza.Controllers
             }
 
             string mobile2 = obj.MobileNo;
-            BLSMS.SendSMS(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, mobile2, "The Bonfire Pizza has received your orders. As soon as you got your Orders. Have a nice day.", Common.SMSCredential.customertempid, "1");
+            BLSMS.SendSMS(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, mobile2, "Bonfire Pizza Point has received your orders. You will get your food shortly. Have a nice day.", Common.SMSCredential.customertempid, "1");
 
 
 

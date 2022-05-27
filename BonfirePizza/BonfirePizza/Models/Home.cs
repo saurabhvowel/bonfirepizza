@@ -59,6 +59,9 @@ namespace BonfirePizza.Models
         public string PK_CategoryItemsID { get; set; }
         public string ItemName { get; set; }
         public string Price { get; set; }
+        public string ServiceTax { get; set; }
+        public string DeliveryCharge { get; set; }
+        public string PaidPrice { get; set; }
         public string PK_MainCategoryID { get; set; }
         public string MainCategoryName { get; set; }
         public List<Home> lstMainCategory { get; set; }

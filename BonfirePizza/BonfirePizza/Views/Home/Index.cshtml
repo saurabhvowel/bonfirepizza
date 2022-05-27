@@ -48,8 +48,8 @@
                 </div>
 
                 @*<div class="restaurant_item text-center">
-                        <img src="../assets/images/pool_side_menu_title.png" class="img-fluid" alt="reataurant_menu">
-                    </div>*@
+            <img src="../assets/images/pool_side_menu_title.png" class="img-fluid" alt="reataurant_menu">
+        </div>*@
                 <div class="restaurant_item">
                     <div class="restaurant_dropdown">
 
@@ -72,24 +72,24 @@
                                 foreach (var Item in Model.lstCategoryItems)
                                 {
                                     @*<div class="recipe_item">
-                                            <div class="ri_img">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                    <button type="button" id="sub" class="sub">-</button>
-                                                    <input type="number" id="1" value="1" min="1" max="500" />
-                                                    <button type="button" id="add" class="add">+</button>
-                                                </div>
-                                            </div>
-                                            <div class="ri_content">
-                                                <div class="ri_text">
-                                                    <h3>@Item.ItemName</h3>
-                                                </div>
-                                                <div class="ri_cart">
-                                                    <h5 class="price">@Item.Price </h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        i++;*@
+                                <div class="ri_img">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <button type="button" id="sub" class="sub">-</button>
+                                        <input type="number" id="1" value="1" min="1" max="500" />
+                                        <button type="button" id="add" class="add">+</button>
+                                    </div>
+                                </div>
+                                <div class="ri_content">
+                                    <div class="ri_text">
+                                        <h3>@Item.ItemName</h3>
+                                    </div>
+                                    <div class="ri_cart">
+                                        <h5 class="price">@Item.Price </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            i++;*@
                                 }
                             }
 
@@ -102,13 +102,21 @@
                 <div class="restaurant_form">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-10 col-sm-12">
+                            <div class="col-lg-4 col-sm-12">
                                 <h3>Request Order</h3>
                                 <br>
                             </div>
                             <div class="col-lg-2 col-sm-12">
-                                <label for="exampleFormControlInput1" class="form-label">Total Amount: </label>    @Html.TextBoxFor(m => m.Price, new { @class = "form-control restaurant_border", @placeholder = "Total Amount", @readonly = "readonly" })
-
+                                <label for="exampleFormControlInput1" class="form-label">Product Amount: </label>    @Html.TextBoxFor(m => m.Price, new { @class = "form-control restaurant_border", @placeholder = "Product Amount", @readonly = "readonly" })
+                            </div>
+                            <div class="col-lg-2 col-sm-12">
+                                <label for="exampleFormControlInput1" class="form-label">Service Tax: </label>    @Html.TextBoxFor(m => m.ServiceTax, new { @class = "form-control restaurant_border", @placeholder = "Service Tax", @readonly = "readonly" })
+                            </div>
+                            <div class="col-lg-2 col-sm-12">
+                                <label for="exampleFormControlInput1" class="form-label">Delivery Charges: </label>    @Html.TextBoxFor(m => m.DeliveryCharge, new { @class = "form-control restaurant_border", @placeholder = "Delivery Charges", @readonly = "readonly" })
+                            </div>
+                            <div class="col-lg-2 col-sm-12">
+                                <label for="exampleFormControlInput1" class="form-label">Total Amount To Be Paid: </label>    @Html.TextBoxFor(m => m.PaidPrice, new { @class = "form-control restaurant_border", @placeholder = "Amount To Be Paid", @readonly = "readonly" })
                             </div>
 
                             <div class="col-lg-12 col-sm-12">
@@ -120,13 +128,30 @@
 
                                 </div>
                             </div>
+                            <div>
+                                <p style="color:red">
+                                    Get Free Home Delivery on orders above Rs. 799/-
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="restaurant_form">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12">
+                                <h3>Your Details</h3>
+                                <br>
+                            </div>
                             <div class="col-lg-4 col-sm-12">
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Name</label>
                                     @Html.TextBoxFor(m => m.Name, new { @class = "form-control restaurant_border", @placeholder = "Name" })
 
                                     @*<label for="exampleFormControlInput1" class="form-label">Room No</label>
-                                        @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control restaurant_border", @placeholder = "Room No", onkeypress = "return validateNumber(event);" })*@
+                @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control restaurant_border", @placeholder = "Room No", onkeypress = "return validateNumber(event);" })*@
 
                                 </div>
                             </div>
@@ -150,12 +175,12 @@
                                 </div>
                             </div>
                             @*<div class="col-lg-4 col-sm-12">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Preferable Time</label>
-                                        @Html.DropDownListFor(m => m.PreferableTime, new SelectList(ViewBag.ddlPreferableTime, "Value", "Text"), new { @class = "form-select restaurant_border", @onChange = "return onSelectMainCategory();" })
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Preferable Time</label>
+                @Html.DropDownListFor(m => m.PreferableTime, new SelectList(ViewBag.ddlPreferableTime, "Value", "Text"), new { @class = "form-select restaurant_border", @onChange = "return onSelectMainCategory();" })
 
-                                    </div>
-                                </div>*@
+            </div>
+        </div>*@
 
 
                             <div class="col-lg-12 col-sm-12">
@@ -170,13 +195,11 @@
                             <div class="text-center">
                                 <input id="SendSMS" name="SendSMS" onclick="return validateform();" class="white-btn ms-lg-4 mt-lg-0 mt-4" type="submit" value="Submit" />
                             </div>
-                            <p style="color:red">
-                                Note* : Excluding Service Tax
-                            </p>
+
                         </div>
+
+
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -356,6 +379,7 @@
     }
 
     function addOnclick(id, name, price) {
+        $('#ServiceTax').val(price*5/100);
         $('#quantityminus' + id).prop('disabled', false);
         var newqty = $('#quantity' + id).val();
         // Get the field name
@@ -377,12 +401,15 @@
 
 
             $('#Price').val(previousPrice);
+            $('#ServiceTax').val(previousPrice*5/100);
         }
         else {
             if ($('#ContainOrders').val() == "") {
                 $('#ContainOrders').val(name);
 
                 $('#Price').val(Number(price) * Number($('#quantity' + id).val()));
+               var tax= $('#Price').val();
+                $('#ServiceTax').val(Number(tax)*5/100);
                 if (newqty == "0") {
                     $('#ContainOrders').val(name + "(" + $('#quantity' + id).val() + ")");
                 } else {
@@ -395,14 +422,25 @@
                 var previousPrice = Number($('#Price').val()) + Number(price);
                 $('#ContainOrders').val(previous + "(" + $('#quantity' + id).val() + ")");
                 $('#Price').val(previousPrice);
-
+                $('#ServiceTax').val(previousPrice*5/100);
             }
         }
+
+        var price = $('#Price').val();
+        if (price > 799 || price == 0) {
+            $('#DeliveryCharge').val(0)
+        } else {
+            $('#DeliveryCharge').val(100);
+        }
+        var ServiceTax = $('#ServiceTax').val();
+        var delivery = $('#DeliveryCharge').val()
+        $('#PaidPrice').val(Number(price) + Number(ServiceTax) + Number(delivery));
+
     }
 
 
     function subOnclick(id, name, price) {
-
+        $('#ServiceTax').val(previousPrice*5/100);
         var quantid = $('#quantityminus' + id).val();
         var newqty = $('#quantity' + id).val();
 
@@ -421,6 +459,8 @@
             } else {
                 var previousPrice = Number(price) - Number($('#Price').val());
             }
+            
+            $('#ServiceTax').val(previousPrice*5/100);
 
             $('#Price').val(previousPrice);
             $('#ContainOrders').val(remove.replace(name + "(" + newqty + ")", name + "(" + $('#quantity' + id).val() + ")"))
@@ -428,6 +468,7 @@
             if ($('#quantity' + id).val() != "0") {
                 /* $('#ContainOrders').val(name);*/
                 $('#Price').val(previousPrice);
+                $('#ServiceTax').val(previousPrice*5/100);
                 $('#quantityminus' + id).prop('disabled', false);
             } else {
                 $('#quantityminus' + id).prop('disabled', true);
@@ -449,6 +490,16 @@
                 }
 
             }
+            var price = $('#Price').val();
+            if (price > 799 || price == 0) {
+                $('#DeliveryCharge').val(0)
+            } else {
+                $('#DeliveryCharge').val(100);
+            }
+            var ServiceTax = $('#ServiceTax').val();
+            var delivery = $('#DeliveryCharge').val()
+            $('#PaidPrice').val(Number(price) + Number(ServiceTax) + Number(delivery));
+
         }
         else {
             if ($('#ContainOrders').val() == "") {
@@ -456,6 +507,7 @@
                 if ($('#quantity' + id).val() != "0") {
                     $('#ContainOrders').val(name);
                     $('#Price').val(price);
+                    $('#ServiceTax').val(price*5/100);
                 }
 
             }
@@ -464,12 +516,24 @@
                 var previousPrice = Number($('#Price').val()) + Number(price);
                 $('#ContainOrders').val(previous);
                 $('#Price').val(previousPrice);
+                $('#ServiceTax').val(previousPrice*5/100);
 
             }
         }
+        var price = $('#Price').val();
+        if (price > 799 || price == 0) {
+            $('#DeliveryCharge').val(0)
+        } else {
+            $('#DeliveryCharge').val(100);
+        }
+        var ServiceTax = $('#ServiceTax').val();
+        var delivery = $('#DeliveryCharge').val()
+        $('#PaidPrice').val(Number(price) + Number(ServiceTax) + Number(delivery));
+
     }
 
     function AddOrders(name, price) {
+        $('#ServiceTax').val(previousPrice*5/100);
         var qty = "";
 
         if ($('#ContainOrders').val().includes(name)) {
@@ -483,22 +547,34 @@
             }
 
             $('#Price').val(previousPrice);
+            $('#ServiceTax').val(previousPrice*5/100);
         }
         else {
             if ($('#ContainOrders').val() == "") {
                 $('#ContainOrders').val(name);
 
                 $('#Price').val(price);
+                $('#ServiceTax').val(price*5/100);
             }
             else {
                 var previous = $('#ContainOrders').val() + ',' + name;
                 var previousPrice = Number($('#Price').val()) + Number(price);
                 $('#ContainOrders').val(previous);
                 $('#Price').val(previousPrice);
+                $('#ServiceTax').val(previousPrice*5/100);
 
             }
         }
 
+        var price = $('#Price').val();
+        if (price > 799 || price==0) {
+            $('#DeliveryCharge').val(0)
+        } else {
+            $('#DeliveryCharge').val(100);
+        }
+        var ServiceTax = $('#ServiceTax').val();
+        var delivery = $('#DeliveryCharge').val()
+        $('#PaidPrice').val(Number(price) + Number(ServiceTax) + Number(delivery));
 
 
     }
