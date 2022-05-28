@@ -225,11 +225,13 @@
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\images\pool_side_menu_logo.png" />
+    <Content Include="assets\images\pool_side_menu_logo0.png" />
     <Content Include="assets\images\pool_side_menu_logo1.png" />
     <Content Include="assets\images\pool_side_menu_page1.jpg" />
     <Content Include="assets\images\pool_side_menu_title.png" />
     <Content Include="assets\images\roomdinning.jpg" />
     <Content Include="assets\images\roomdinning_logo.png" />
+    <Content Include="assets\images\Untitled design %286%29.png" />
     <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

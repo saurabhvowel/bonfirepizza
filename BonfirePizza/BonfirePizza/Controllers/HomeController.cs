@@ -155,7 +155,7 @@ namespace BonfirePizza.Controllers
 
 
             string clientMob = "7897294077";
-            BLSMS.SendSMS2(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, clientMob, "You got orders from Mobile No: " + obj.MobileNo + ". -BoneFire Pizza", Common.SMSCredential.tempid, "1");
+            BLSMS.SendSMS2(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, clientMob, "You got orders from Mobile No: " + obj.MobileNo + ". -BoneFire Pizza Point", Common.SMSCredential.tempid, "1");
             CreateOrder obj1 = new CreateOrder();
             Session["sub_total"] = obj.PaidPrice;
             Session["Mobile"] = obj.MobileNo;
@@ -199,9 +199,9 @@ namespace BonfirePizza.Controllers
             mailServer.UseDefaultCredentials = true;
             mailServer.Credentials = new System.Net.NetworkCredential("voweldigitaladworld@gmail.com", "mudmnvgqtyvffkmq");
 
-            using (var mess1 = new MailMessage("voweldigitaladworld@gmail.com", "voweldigitaladworld@gmail.com")
+            using (var mess1 = new MailMessage("voweldigitaladworld@gmail.com", "order@bonfirepizzapoint.com")
             {
-                Subject = "The Bonefire Pizza Order ",
+                Subject = "Order- Bonefire Pizza Point",
                 Body = "Name: " + obj.Name + " , Mobile: " + obj.MobileNo + " , Email: " + obj.Email + " , Address: " + obj.Address + " , & His/Her orders are : " + obj.ContainOrders +  " . The total amount is : " + obj.PaidPrice
             })
             
