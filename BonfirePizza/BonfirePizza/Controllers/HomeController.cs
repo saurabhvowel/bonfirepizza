@@ -194,15 +194,15 @@ namespace BonfirePizza.Controllers
             }
 
 
-            SmtpClient mailServer = new SmtpClient("smtp.gmail.com", 587);
+            SmtpClient mailServer = new SmtpClient("smtp.mail.yahoo.com", 587);
             mailServer.EnableSsl = true;
             mailServer.UseDefaultCredentials = true;
-            mailServer.Credentials = new System.Net.NetworkCredential("voweldigitaladworld@gmail.com", "mudmnvgqtyvffkmq");
+            mailServer.Credentials = new System.Net.NetworkCredential("bonfirepizza@yahoo.com", "urqkfycdpdnhjcuq");
 
-            using (var mess1 = new MailMessage("voweldigitaladworld@gmail.com", "order@bonfirepizzapoint.com")
+            using (var mess1 = new MailMessage("bonfirepizza@yahoo.com", "priyajoshi14468@gmail.com")
             {
-                Subject = "Order- Bonefire Pizza Point",
-                Body = "Name: " + obj.Name + " , Mobile: " + obj.MobileNo + " , Email: " + obj.Email + " , Address: " + obj.Address + " , & His/Her orders are : " + obj.ContainOrders +  " . The total amount is : " + obj.PaidPrice
+                Subject = "Order from "+ obj.MobileNo + " - Bonfire Pizza",
+                Body = "Hi," + "<br>" + "<br>" + "You got order from" + "<br>" + "Name: " + obj.Name + " , Mobile: " + obj.MobileNo + " , Email: " + obj.Email + "<br>" + "Address: " + obj.Address + "<br>" + "His/Her orders are : " + obj.ContainOrders + "<br>" + "Total amount paid : ₹ " + obj.PaidPrice
             })
             
           
@@ -210,9 +210,19 @@ namespace BonfirePizza.Controllers
                 mess1.IsBodyHtml = true;
                 mailServer.Send(mess1);
             }
+            using (var mess2 = new MailMessage("bonfirepizza@yahoo.com", obj.Email)
+            {
+                Subject = "Order Confirmation - Bonfire Pizza",
+                Body = "Hi " + obj.Name + "," + "<br>" + "<br>" + "We have received your orders. You will get your food shortly." + "<br>" + "Your orders are : " + obj.ContainOrders  + "<br>" + "Total amount paid : ₹ " + obj.PaidPrice + "<br>"+"Delivery Address: " + obj.Address + "<br>" + " Mobile : "  + obj.MobileNo
+            })
 
+
+            {
+                mess2.IsBodyHtml = true;
+                mailServer.Send(mess2);
+            }
             string mobile2 = obj.MobileNo;
-            BLSMS.SendSMS(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, mobile2, "Bonfire Pizza Point has received your orders. You will get your food shortly. Have a nice day.", Common.SMSCredential.customertempid, "1");
+           // BLSMS.SendSMS(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, mobile2, "Bonfire Pizza Point has received your orders. You will get your food shortly. Have a nice day.", Common.SMSCredential.customertempid, "1");
 
 
 
