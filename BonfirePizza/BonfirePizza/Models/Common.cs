@@ -82,8 +82,8 @@ namespace BonfirePizza.Models
             public static string CreateOrder = "https://api.razorpay.com/v1/orders";
             public static string CapturePayment = "https://api.razorpay.com/v1/payments/";
             public static string FetchPaymentByOrderURL = "https://api.razorpay.com/v1/orders/";
-            public static string KeyName = "rzp_live_rBKHCn1J0K5siL";
-            public static string SecretKey = "HlEs5SvvbMwnWB3PHNJZJ0EV";
+            public static string KeyName = "rzp_test_Q4MYd9pK2Oz7zg";
+            public static string SecretKey = "GwxciC2FSuN51ZAjF9B6Il7w";
 
             // public static string KeyName = "rzp_test_VSnr1Dm89baTnm";
             // public static string SecretKey = "6G6WnMAj9UpxZ9mDZBPBof4A";
