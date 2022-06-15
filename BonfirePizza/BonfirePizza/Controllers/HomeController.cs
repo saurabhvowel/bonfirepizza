@@ -153,9 +153,12 @@ namespace BonfirePizza.Controllers
         public ActionResult SendSMS(Home obj)
         {
 
-
-            string clientMob = "7897294077";
-            BLSMS.SendSMS2(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, clientMob, "You got orders from Mobile No: " + obj.MobileNo + ". -BoneFire Pizza Point", Common.SMSCredential.tempid, "1");
+            Session["Email"] = obj.Email;
+            Session["PaidPrice"] = obj.PaidPrice;
+            Session["Address"] = obj.Address;
+            Session["ContainOrders"] = obj.ContainOrders;
+            Session["Name"] = obj.Name;
+            
             CreateOrder obj1 = new CreateOrder();
             Session["sub_total"] = obj.PaidPrice;
             Session["Mobile"] = obj.MobileNo;
@@ -194,40 +197,6 @@ namespace BonfirePizza.Controllers
             }
 
 
-            SmtpClient mailServer = new SmtpClient("smtp.mail.yahoo.com", 587);
-            mailServer.EnableSsl = true;
-            mailServer.UseDefaultCredentials = true;
-            mailServer.Credentials = new System.Net.NetworkCredential("bonfirepizza@yahoo.com", "urqkfycdpdnhjcuq");
-
-            using (var mess1 = new MailMessage("bonfirepizza@yahoo.com", "priyajoshi14468@gmail.com")
-            {
-                Subject = "Order from "+ obj.MobileNo + " - Bonfire Pizza",
-                Body = "Hi," + "<br>" + "<br>" + "You got order from" + "<br>" + "Name: " + obj.Name + " , Mobile: " + obj.MobileNo + " , Email: " + obj.Email + "<br>" + "Address: " + obj.Address + "<br>" + "His/Her orders are : " + obj.ContainOrders + "<br>" + "Total amount paid : ₹ " + obj.PaidPrice
-            })
-            
-          
-            {
-                mess1.IsBodyHtml = true;
-                mailServer.Send(mess1);
-            }
-            using (var mess2 = new MailMessage("bonfirepizza@yahoo.com", obj.Email)
-            {
-                Subject = "Order Confirmation - Bonfire Pizza",
-                Body = "Hi " + obj.Name + "," + "<br>" + "<br>" + "We have received your orders. You will get your food shortly." + "<br>" + "Your orders are : " + obj.ContainOrders  + "<br>" + "Total amount paid : ₹ " + obj.PaidPrice + "<br>"+"Delivery Address: " + obj.Address + "<br>" + " Mobile : "  + obj.MobileNo
-            })
-
-
-            {
-                mess2.IsBodyHtml = true;
-                mailServer.Send(mess2);
-            }
-            string mobile2 = obj.MobileNo;
-           // BLSMS.SendSMS(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, mobile2, "Bonfire Pizza Point has received your orders. You will get your food shortly. Have a nice day.", Common.SMSCredential.customertempid, "1");
-
-
-
-
-            TempData["SendSMS"] = "Msg Sent";
             return RedirectToAction("Payment");
         }
 
@@ -329,13 +298,44 @@ namespace BonfirePizza.Controllers
                     {
                         try
                         {
-                            string message = "Order Placed : Your order with order ID : " + dsCustomerOrder.Tables[0].Rows[0]["OrderNo"].ToString() + " has been placed.";
-                            //model.MobileNo = Session["ShippingMobile"].ToString();
-                            //model.CustomerName = Session["Name"].ToString();
+
                             model.OrderNo = dsCustomerOrder.Tables[0].Rows[0]["OrderNo"].ToString();
-                            //BLSMS.SendSMS(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, model.MobileNo, message, Common.SMSCredential.customertempid, "1");
+                            SmtpClient mailServer = new SmtpClient("smtp.mail.yahoo.com", 587);
+                            mailServer.EnableSsl = true;
+                            mailServer.UseDefaultCredentials = true;
+                            mailServer.Credentials = new System.Net.NetworkCredential("bonfirepizza@yahoo.com", "urqkfycdpdnhjcuq");
+
+                            using (var mess1 = new MailMessage("bonfirepizza@yahoo.com", "priyajoshi14468@gmail.com")
+                            {
+                                Subject = "Order from " + model.MobileNo + " - Bonfire Pizza",
+                                Body = "Hi," + "<br>" + "<br>" + "You got order from" + "<br>" + "Name: " + Session["Name"].ToString() + " , Mobile: " + model.MobileNo + " , Email: " + Session["Email"].ToString() + "<br>" + "Address: " + Session["Address"].ToString() + "<br>" + "His/Her orders are : " + Session["ContainOrders"].ToString() + "<br>" + "Total amount : ₹ " + Session["PaidPrice"].ToString()
+                            })
 
 
+                            {
+                                mess1.IsBodyHtml = true;
+                                mailServer.Send(mess1);
+                            }
+                            using (var mess2 = new MailMessage("bonfirepizza@yahoo.com", Session["Email"].ToString())
+                            {
+                                Subject = "Order Confirmation - Bonfire Pizza",
+                                Body = "Hi " + Session["Name"].ToString() + "," + "<br>" + "<br>" + "We have received your orders. You will get your food shortly." + "<br>" + "Your orders are : " + Session["ContainOrders"].ToString() + "<br>" + "Total amount : ₹ " + Session["PaidPrice"].ToString() + "<br>" + "Delivery Address: " + Session["Address"].ToString() + "<br>" + " Mobile : " + model.MobileNo
+                            })
+
+
+                            {
+                                mess2.IsBodyHtml = true;
+                                mailServer.Send(mess2);
+                            }
+                            string mobile2 = model.MobileNo;
+                            string clientMob = "9650672515" + ',' + "9548448084" + ',' + "8896223445";
+                            BLSMS.SendSMSClient(clientMob, " got orders from " + Session["Name"].ToString() + ", His/her mobile no. is: " + mobile2 + " %26 the orders are: " + Session["ContainOrders"].ToString() + "-Bonfire Pizza");
+
+                            BLSMS.SendSMSNew(mobile2, " customer, We have received your orders. You will get your food shortly. Have a nice day. -Bonfire Pizza Rishikesh");
+
+
+
+                            TempData["SendSMS"] = "Msg Sent";
                         }
                         catch (Exception ex1)
                         { }
@@ -438,11 +438,11 @@ namespace BonfirePizza.Controllers
         {
 
 
-            string clientMob = "8077320232" + ',' + "7055087866" + ',' + "7906558228" + ',' + "8630943854";
-            BLSMS.SendSMS2(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, clientMob, "You got orders from Room No: " + obj.RoomNo + ". Mobile No is: " + obj.MobileNo + ". -THE NEERAJ FOREST RESORT HOLISTIC HEALTH SPA", Common.SMSCredential.tempid, "1");
+            string clientMob = "";
+           // BLSMS.SendSMS2(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, clientMob, "You got orders from Room No: " + obj.RoomNo + ". Mobile No is: " + obj.MobileNo + ". -THE NEERAJ FOREST RESORT HOLISTIC HEALTH SPA", Common.SMSCredential.tempid, "1");
 
 
-
+/*
             SmtpClient mailServer = new SmtpClient("smtp.gmail.com", 587);
             mailServer.EnableSsl = true;
             mailServer.UseDefaultCredentials = true;
@@ -457,11 +457,11 @@ namespace BonfirePizza.Controllers
                 mess1.IsBodyHtml = true;
                 mailServer.Send(mess1);
             }
-
+*/
             string mobile2 = obj.MobileNo;
             //    mobile2 = mobile + ',' + "9910098768";
 
-            BLSMS.SendSMS(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, mobile2, "The Neeraj River Forest Resort has received your orders. As soon as you got your Orders. Have a nice day. - www.theneerajspa.com", Common.SMSCredential.customertempid, "1");
+            BLSMS.SendSMSNew(mobile2, " customer, We have received your orders. You will get your food shortly. Have a nice day. -Bonfire Pizza Rishikesh");
 
 
 

@@ -14,7 +14,8 @@
 <script>
     $(document).ready(function () {
         var options = {
-            "key": "rzp_test_Q4MYd9pK2Oz7zg", // Enter the Key ID generated from the Dashboard //rzp_test_dUtqKgNQUPcSDE //rzp_live_BwhTaXRxeklaAI
+            /*"key": "rzp_live_rBKHCn1J0K5siL", // Live Key ID generated from the Dashboard*/ 
+            "key": "rzp_test_Q4MYd9pK2Oz7zg", // Test Key ID generated from the Dashboard 
             "amount": $('#amount').val(), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             "currency": "INR",
             "name": "Bonefire Pizza Point",
@@ -30,7 +31,7 @@
                 "address": "Razorpay Corporate Office"
             },
             "theme": {
-                "color": "#1188fb"
+                "color": "#C10A28"
             }
         };
         var rzp1 = new Razorpay(options);

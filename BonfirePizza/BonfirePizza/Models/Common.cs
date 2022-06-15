@@ -14,7 +14,7 @@ namespace BonfirePizza.Models
         public string SMSTemplate { get; set; }
         public string MessageType { get; set; }
         public string AddedBy { get; set; }
-    
+
         public string Pk_BranchID { get; set; }
         public string UpdatedBy { get; set; }
         public string ReferBy { get; set; }
@@ -25,15 +25,15 @@ namespace BonfirePizza.Models
         public string EncrptNo { get; set; }
         public string FromDate { get; set; }
         public string ToDate { get; set; }
-         public string DeletedBy { get; set; }
-        public string PinCode { get;  set; }
+        public string DeletedBy { get; set; }
+        public string PinCode { get; set; }
         public string State { get; set; }
         public string City { get; set; }
         public string MonthName { get; set; }
         public string MonthId { get; set; }
         public string IsPaid { get; set; }
-         public string IDLoginId { get; set; }
-     
+        public string IDLoginId { get; set; }
+
         public class SMSCredential
         {
             public static string UserName = "seemagrouop";
@@ -50,7 +50,7 @@ namespace BonfirePizza.Models
         public static List<SelectListItem> BindPreferableTime()
         {
             List<SelectListItem> PreferableTime = new List<SelectListItem>();
-            PreferableTime.Add(new SelectListItem { Text = "Select Preferable Time", Value =  null });
+            PreferableTime.Add(new SelectListItem { Text = "Select Preferable Time", Value = null });
             PreferableTime.Add(new SelectListItem { Text = "07 AM - 08 AM", Value = "07 AM - 08 AM" });
             PreferableTime.Add(new SelectListItem { Text = "08 AM - 09 AM", Value = "08 AM - 09 AM" });
             PreferableTime.Add(new SelectListItem { Text = "09 AM - 10 AM", Value = "09 AM - 10 AM" });
@@ -85,10 +85,12 @@ namespace BonfirePizza.Models
             public static string KeyName = "rzp_test_Q4MYd9pK2Oz7zg";
             public static string SecretKey = "GwxciC2FSuN51ZAjF9B6Il7w";
 
-            // public static string KeyName = "rzp_test_VSnr1Dm89baTnm";
-            // public static string SecretKey = "6G6WnMAj9UpxZ9mDZBPBof4A";
+            //public static string KeyName = "rzp_live_rBKHCn1J0K5siL";
+           // public static string SecretKey = "HlEs5SvvbMwnWB3PHNJZJ0EV";
+
+
         }
 
     }
-    
+
 }
