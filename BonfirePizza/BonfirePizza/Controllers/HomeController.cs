@@ -187,7 +187,7 @@ namespace BonfirePizza.Controllers
                 DataSet ds = obj1.SaveOrderDetails();
 
                 Session["OrderId"] = order["id"].ToString();
-                Session["Amount"] = ViewBag.CartTotal;
+                Session["Amount"] = ViewBag.CartTotal;  
 
             }
             catch (Exception ex)
