@@ -16,7 +16,7 @@ namespace BonfirePizza.Controllers
 {
     public class HomeController : Controller
     {
-
+       
         public ActionResult AdminLogin()
         {
             Session.Abandon();
@@ -158,7 +158,7 @@ namespace BonfirePizza.Controllers
             Session["Address"] = obj.Address;
             Session["ContainOrders"] = obj.ContainOrders;
             Session["Name"] = obj.Name;
-            
+
             CreateOrder obj1 = new CreateOrder();
             Session["sub_total"] = obj.PaidPrice;
             Session["Mobile"] = obj.MobileNo;
@@ -187,7 +187,7 @@ namespace BonfirePizza.Controllers
                 DataSet ds = obj1.SaveOrderDetails();
 
                 Session["OrderId"] = order["id"].ToString();
-                Session["Amount"] = ViewBag.CartTotal;  
+                Session["Amount"] = ViewBag.CartTotal;
 
             }
             catch (Exception ex)
@@ -219,7 +219,7 @@ namespace BonfirePizza.Controllers
 
         #region razorpay
 
-        public ActionResult CreateOrder(string Amount,string Mobile)
+        public ActionResult CreateOrder(string Amount, string Mobile)
         {
             CreateOrder obj = new CreateOrder();
             Session["sub_total"] = Amount;
@@ -242,7 +242,7 @@ namespace BonfirePizza.Controllers
                 obj1.OrderId = order["id"].ToString();
                 obj1.Status = "0";
                 obj.OrderId = order["id"].ToString();
-                obj.Pk_UserId = Session["Mobile"].ToString() ;
+                obj.Pk_UserId = Session["Mobile"].ToString();
                 obj.TransactionType = "Wallet Web";
                 obj.Type = "Card";
                 obj.amount = Amount;
@@ -305,24 +305,54 @@ namespace BonfirePizza.Controllers
                             mailServer.UseDefaultCredentials = true;
                             mailServer.Credentials = new System.Net.NetworkCredential("bonfirepizza@yahoo.com", "urqkfycdpdnhjcuq");
 
-                            using (var mess1 = new MailMessage("bonfirepizza@yahoo.com", "priyajoshi14468@gmail.com")
+                            using (var mess1 = new MailMessage("bonfirepizza@yahoo.com", "order@bonfirepizzapoint.com")
                             {
                                 Subject = "Order from " + model.MobileNo + " - Bonfire Pizza",
-                                Body = "Hi," + "<br>" + "<br>" + "You got order from" + "<br>" + "Name: " + Session["Name"].ToString() + " , Mobile: " + model.MobileNo + " , Email: " + Session["Email"].ToString() + "<br>" + "Address: " + Session["Address"].ToString() + "<br>" + "His/Her orders are : " + Session["ContainOrders"].ToString() + "<br>" + "Total amount : ₹ " + Session["PaidPrice"].ToString()
+                                Body = "Hi," + "<br>" + "<br>" + "You got order from" + "<br>" + "Name: " + Session["Name"].ToString() + " , Mobile: " + model.MobileNo + " , Email: " + Session["Email"].ToString() + "<br>" + "Address: " + Session["Address"].ToString() + "<br>" + "His/Her orders are : " + Session["ContainOrders"].ToString() + "<br>" + "Total amount : ₹ " + Session["PaidPrice"].ToString() +
+                                "<br>" + "<br>" +
+                                "<b><u>Please call the customer and confirm the order and delivery address.</u><b>" + "<br>" + "<br>" +
+
+                                "<b>Customer has gotten Bonfire's mobile and email in his/her mail id. He/she can contact you on the details given below- <b>" + "<br>" +
+                              "<img src='https://bonfirepizzapoint.com/assets/images/logo.png'>" + "<br>" +
+                              "Bonfire Pizza Point" + "<br>" +
+                              "Mobile No- 09650672515" + "<br>" +
+                              "Email- order@bonfirepizzapoint.com"
                             })
-
-
                             {
                                 mess1.IsBodyHtml = true;
                                 mailServer.Send(mess1);
                             }
+                            using (var mess11 = new MailMessage("bonfirepizza@yahoo.com", "priyajoshi14468@gmail.com")
+                            {
+                                Subject = "Order from " + model.MobileNo + " - Bonfire Pizza",
+                                Body = "Hi," + "<br>" + "<br>" + "You got order from" + "<br>" + "Name: " + Session["Name"].ToString() + " , Mobile: " + model.MobileNo + " , Email: " + Session["Email"].ToString() + "<br>" + "Address: " + Session["Address"].ToString() + "<br>" + "His/Her orders are : " + Session["ContainOrders"].ToString() + "<br>" + "Total amount : ₹ " + Session["PaidPrice"].ToString() +
+                                "<br>" + "<br>" +
+                                "<b><u>Please call the customer and confirm the order and delivery address.</u><b>" + "<br>" + "<br>" +
+
+                                "<b>Customer has gotten Bonfire's mobile and email in his/her mail id. He/she can contact you on the details given below- <b>" + "<br>" +
+                              "<img src='https://bonfirepizzapoint.com/assets/images/logo.png'>" + "<br>" +
+                              "Bonfire Pizza Point" + "<br>" +
+                              "Mobile No- 09650672515" + "<br>" +
+                              "Email- order@bonfirepizzapoint.com"
+                            })
+                            {
+                                mess11.IsBodyHtml = true;
+                                mailServer.Send(mess11);
+                            }
+
                             using (var mess2 = new MailMessage("bonfirepizza@yahoo.com", Session["Email"].ToString())
                             {
                                 Subject = "Order Confirmation - Bonfire Pizza",
-                                Body = "Hi " + Session["Name"].ToString() + "," + "<br>" + "<br>" + "We have received your orders. You will get your food shortly." + "<br>" + "Your orders are : " + Session["ContainOrders"].ToString() + "<br>" + "Total amount : ₹ " + Session["PaidPrice"].ToString() + "<br>" + "Delivery Address: " + Session["Address"].ToString() + "<br>" + " Mobile : " + model.MobileNo
+                                Body = "Hi " + Session["Name"].ToString() + "," + "<br>" + "<b>We have received your order. Please re-check your order and contact details.</b>" + "<br>" + "Your orders are : " + Session["ContainOrders"].ToString() + "<br>" + " Mobile : " + model.MobileNo + "<br>" + "Delivery Address: " + Session["Address"].ToString() + "<br>" + "Total amount : ₹ " + Session["PaidPrice"].ToString() +
+                                 "<br>" +
+                                 "<b>Your food will be prepared after payment confirmation and will be delivered soon.<b>" + "<br>" +
+                                "<u>This is an auto-generated response to your order confirmation. Please do not reply to this email as it will not be received.</u>" + "<br>" + "<br>" +
+                                "<b><u>One of our representatives will contact you soon. You can also contact us on the details given below-</u><b>" + "<br>" +
+                                "<img src='https://bonfirepizzapoint.com/assets/images/logo.png'>" + "<br>" +
+                                "Bonfire Pizza Point" + "<br>" +
+                                "Mobile No- 09650672515" + "<br>" +
+                                "Email- order@bonfirepizzapoint.com"
                             })
-
-
                             {
                                 mess2.IsBodyHtml = true;
                                 mailServer.Send(mess2);
@@ -439,25 +469,25 @@ namespace BonfirePizza.Controllers
 
 
             string clientMob = "";
-           // BLSMS.SendSMS2(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, clientMob, "You got orders from Room No: " + obj.RoomNo + ". Mobile No is: " + obj.MobileNo + ". -THE NEERAJ FOREST RESORT HOLISTIC HEALTH SPA", Common.SMSCredential.tempid, "1");
+            // BLSMS.SendSMS2(Common.SMSCredential.UserName, Common.SMSCredential.Password, Common.SMSCredential.SenderId, clientMob, "You got orders from Room No: " + obj.RoomNo + ". Mobile No is: " + obj.MobileNo + ". -THE NEERAJ FOREST RESORT HOLISTIC HEALTH SPA", Common.SMSCredential.tempid, "1");
 
 
-/*
-            SmtpClient mailServer = new SmtpClient("smtp.gmail.com", 587);
-            mailServer.EnableSsl = true;
-            mailServer.UseDefaultCredentials = true;
-            mailServer.Credentials = new System.Net.NetworkCredential("theneerajforest@gmail.com", "Neerajforest@123");
+            /*
+                        SmtpClient mailServer = new SmtpClient("smtp.gmail.com", 587);
+                        mailServer.EnableSsl = true;
+                        mailServer.UseDefaultCredentials = true;
+                        mailServer.Credentials = new System.Net.NetworkCredential("theneerajforest@gmail.com", "Neerajforest@123");
 
-            using (var mess1 = new MailMessage("theneerajforest@gmail.com", "order@theneerajforestresort.com")
-            {
-                Subject = "Order for The Bonefire Pizza" ,
-                Body = "His/Her orders are : " + obj.ContainOrders + ". And His/Her preferred time is: " + obj.PreferableTime
-            })
-            {
-                mess1.IsBodyHtml = true;
-                mailServer.Send(mess1);
-            }
-*/
+                        using (var mess1 = new MailMessage("theneerajforest@gmail.com", "order@theneerajforestresort.com")
+                        {
+                            Subject = "Order for The Bonefire Pizza" ,
+                            Body = "His/Her orders are : " + obj.ContainOrders + ". And His/Her preferred time is: " + obj.PreferableTime
+                        })
+                        {
+                            mess1.IsBodyHtml = true;
+                            mailServer.Send(mess1);
+                        }
+            */
             string mobile2 = obj.MobileNo;
             //    mobile2 = mobile + ',' + "9910098768";
 

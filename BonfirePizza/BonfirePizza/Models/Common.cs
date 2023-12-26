@@ -88,7 +88,6 @@ namespace BonfirePizza.Models
             public static string KeyName = "rzp_live_rBKHCn1J0K5siL";
             public static string SecretKey = "HlEs5SvvbMwnWB3PHNJZJ0EV";
 
-
         }
 
     }
